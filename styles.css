@@ -29,9 +29,27 @@ body{
 .avatar.wall-collision {
   border-bottom: 2em solid red;
 }
+.avatar.obstacle-collision {
+  border-bottom: 2em solid purple;
+}
 .stage.wall-collision {
   animation: shake 500ms infinite;
   background-color: red;
+}
+.stage.obstacle-collision {
+  animation: shake 500ms infinite;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #9333ea);
+}
+
+.obstacle {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  border: 2px solid #000;
+  border-radius: 0.2em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 2;
 }
 
 .controls {

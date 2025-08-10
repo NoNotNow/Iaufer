@@ -19,3 +19,20 @@ export function handleWallCollision() {
   
   stop();
 }
+
+export function handleObstacleCollision() {
+  let stage = document.getElementById("stage");
+  let avatar = document.getElementById("avatar");
+  
+  avatar.classList.add("obstacle-collision");
+  stage.classList.add("obstacle-collision");
+  
+  setTimeout(() => {
+    avatar.classList.remove("obstacle-collision");
+    stage.classList.remove("obstacle-collision");
+    resetPosition();
+    updateView();
+  }, 500);
+  
+  stop();
+}

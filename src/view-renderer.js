@@ -13,4 +13,17 @@ export function updateStageView() {
   let stage = document.getElementById("stage");
   stage.style.width = gameState.stageSize.x + 2 + "em";
   stage.style.height = gameState.stageSize.y + 2 + "em";
+  
+  // Clear existing obstacles
+  const existingObstacles = stage.querySelectorAll('.obstacle');
+  existingObstacles.forEach(obstacle => obstacle.remove());
+  
+  // Add obstacles to the stage
+  gameState.obstacles.forEach(obstacle => {
+    const obstacleElement = document.createElement('div');
+    obstacleElement.className = 'obstacle';
+    obstacleElement.style.left = obstacle.x + 'em';
+    obstacleElement.style.top = obstacle.y + 'em';
+    stage.appendChild(obstacleElement);
+  });
 }
