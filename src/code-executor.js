@@ -5,39 +5,34 @@ export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Transform user code to automatically add delays after each line
+// Wrapper functions that add delays and other logic
+async function wrappedGo(input) {
+  const { go } = await import('./movement.js');
+  go(input);
+  await delay();
+}
+
+async function wrappedLeft(input) {
+  const { left } = await import('./movement.js');
+  left(input);
+  await delay();
+}
+
+async function wrappedRight(input) {
+  const { right } = await import('./movement.js');
+  right(input);
+  await delay();
+}
+
+// Transform user code to use wrapped functions
 function transformCode(code) {
-  // Split code into lines and process each one
-  const lines = code.split('\n');
-  const transformedLines = [];
+  // Replace function calls with wrapped versions
+  let transformedCode = code
+    .replace(/\bgo\(/g, 'await go(')
+    .replace(/\bleft\(/g, 'await left(')
+    .replace(/\bright\(/g, 'await right(');
   
-  for (let line of lines) {
-    const trimmedLine = line.trim();
-    
-    // Skip empty lines and comments
-    if (!trimmedLine || trimmedLine.startsWith('//') || trimmedLine.startsWith('/*')) {
-      transformedLines.push(line);
-      continue;
-    }
-    
-    // Skip control structure lines (they don't need delays)
-    if (trimmedLine.match(/^\s*(for|while|if|else|function|var|let|const|return|\}|\{)/)) {
-      transformedLines.push(line);
-      continue;
-    }
-    
-    // Add the original line
-    transformedLines.push(line);
-    
-    // Add delay after lines that contain movement commands
-    if (trimmedLine.includes('go(') || trimmedLine.includes('left(') || trimmedLine.includes('right(')) {
-      // Match the indentation of the current line
-      const indentation = line.match(/^\s*/)[0];
-      transformedLines.push(indentation + 'await delay();');
-    }
-  }
-  
-  return transformedLines.join('\n');
+  return transformedCode;
 }
 
 // Parse and prepare user code for execution
@@ -46,20 +41,21 @@ function parseUserCode(code) {
     throw new Error("No code to execute");
   }
 
-  // Transform the user's code to add automatic delays
+  // Transform the user's code to use wrapped functions
   const transformedCode = transformCode(code);
   console.log("Transformed code:", transformedCode);
   
   // Create an async function from the transformed code
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
   return new AsyncFunction(`
-    // Import movement functions and delay into execution context
-    const { go, left, right } = await import('./movement.js');
-    const { delay } = await import('./code-executor.js');
+    // Import wrapped movement functions into execution context
+    const go = wrappedGo;
+    const left = wrappedLeft;
+    const right = wrappedRight;
     
-    // Transformed user's code with automatic delays
+    // Transformed user's code
     ${transformedCode}
-  `);
+  `).bind({ wrappedGo, wrappedLeft, wrappedRight });
 }
 
 let isRunning = false;
