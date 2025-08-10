@@ -1,4 +1,5 @@
 // Code execution and program control
+import { go, left, right } from './movement.js';
 
 // Global execution state
 let isRunning = false;
@@ -9,14 +10,21 @@ export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Generic wrapper function that adds delay and other logic
-function createWrappedFunction(originalFunction) {
-  return async function(input) {
-    originalFunction(input);
-    await delay();
-  };
+// Explicit wrapped functions
+async function wrappedGo(input) {
+  go(input);
+  await delay();
 }
 
+async function wrappedLeft(input) {
+  left(input);
+  await delay();
+}
+
+async function wrappedRight(input) {
+  right(input);
+  await delay();
+}
 
 // Transform user code to use wrapped functions
 function transformCode(code) {
@@ -35,55 +43,22 @@ function parseUserCode(code) {
     throw new Error("No code to execute");
   }
 
-  // Temporarily assign functions to global scope for parsing
-  const originalGo = window.go;
-  const originalLeft = window.left;
-  const originalRight = window.right;
-  
-  window.go = go;
-  window.left = left;
-  window.right = right;
-
   // Transform the user's code to use wrapped functions
   const transformedCode = transformCode(code);
   console.log("Transformed code:", transformedCode);
   
-  try {
-    // Create an async function from the transformed code
-    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-    const userFunction = new AsyncFunction('go', 'left', 'right', `
-      // User's transformed code with movement functions available as parameters
-      ${transformedCode}
-    `);
-    
-    return userFunction;
-  } finally {
-    // Clean up global assignments
-    if (originalGo !== undefined) {
-      window.go = originalGo;
-    } else {
-      delete window.go;
-    }
-    if (originalLeft !== undefined) {
-      window.left = originalLeft;
-    } else {
-      delete window.left;
-    }
-    if (originalRight !== undefined) {
-      window.right = originalRight;
-    } else {
-      delete window.right;
-    }
-  }
+  // Create an async function from the transformed code
+  const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+  const userFunction = new AsyncFunction('go', 'left', 'right', `
+    // User's transformed code with movement functions available as parameters
+    ${transformedCode}
+  `);
+  
+  return userFunction;
 }
 
 // Execute user function continuously until stopped
 async function executeUntilStopped(userFunction) {
-  // Create wrapped versions of movement functions
-  const wrappedGo = createWrappedFunction(go);
-  const wrappedLeft = createWrappedFunction(left);
-  const wrappedRight = createWrappedFunction(right);
-  
   while (isRunning) {
     try {
       await userFunction(wrappedGo, wrappedLeft, wrappedRight);
