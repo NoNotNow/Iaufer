@@ -53,8 +53,8 @@ async function wrappedRight(input) {
   await movementDelay();
 }
 
-// Import and wrap the free function
-import { free } from './movement.js';
+// Import and wrap the free function from game-state
+import { free } from './game-state.js';
 
 function wrappedFree() {
   return free();
