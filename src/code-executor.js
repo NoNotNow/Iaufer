@@ -63,11 +63,12 @@ function parseUserCode(code) {
     
     // Transformed user's code
     ${transformedCode}
-  `).bind({ go: wrappedGo, left: wrappedLeft, right: wrappedRight });
+  `).bind({
+    go: createWrappedFunction(go),
+    left: createWrappedFunction(left),
+    right: createWrappedFunction(right)
+  });
 }
-
-let isRunning = false;
-let currentExecution = null;
 
 // Execute user function continuously until stopped
 async function executeUntilStopped(userFunction) {
