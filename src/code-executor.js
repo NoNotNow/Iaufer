@@ -49,9 +49,9 @@ function parseUserCode(code) {
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
   return new AsyncFunction(`
     // Import wrapped movement functions into execution context
-    const go = wrappedGo;
-    const left = wrappedLeft;
-    const right = wrappedRight;
+    const go = this.wrappedGo;
+    const left = this.wrappedLeft;
+    const right = this.wrappedRight;
     
     // Transformed user's code
     ${transformedCode}
