@@ -36,3 +36,20 @@ export function handleObstacleCollision() {
   
   stop();
 }
+
+export function handleTargetReached() {
+  let stage = document.getElementById("stage");
+  let avatar = document.getElementById("avatar");
+  
+  avatar.classList.add("target-reached");
+  stage.classList.add("target-reached");
+  
+  setTimeout(() => {
+    avatar.classList.remove("target-reached");
+    stage.classList.remove("target-reached");
+    resetPosition();
+    updateView();
+  }, 2000);
+  
+  stop();
+}

@@ -24,6 +24,7 @@ export function go(input) {
 
   if (!withinBounds()) handleWallCollision();
   if (checkObstacleCollision()) handleObstacleCollision();
+  if (checkTargetReached()) handleTargetReached();
   updateView();
 }
 

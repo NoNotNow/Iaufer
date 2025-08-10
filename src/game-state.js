@@ -55,3 +55,21 @@ export function checkObstacleCollision() {
   }
   );
 }
+
+export function checkTargetReached() {
+  const avatarLeft = gameState.position.x;
+  const avatarRight = gameState.position.x + 2;
+  const avatarTop = gameState.position.y;
+  const avatarBottom = gameState.position.y + 2;
+  
+  const targetLeft = gameState.target.x;
+  const targetRight = gameState.target.x + 2;
+  const targetTop = gameState.target.y;
+  const targetBottom = gameState.target.y + 2;
+  
+  // Check for overlap in both x and y directions
+  return !(avatarRight <= targetLeft || 
+           avatarLeft >= targetRight || 
+           avatarBottom <= targetTop || 
+           avatarTop >= targetBottom);
+}

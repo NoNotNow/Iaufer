@@ -32,6 +32,9 @@ body{
 .avatar.obstacle-collision {
   border-bottom: 2em solid purple;
 }
+.avatar.target-reached {
+  border-bottom: 2em solid gold;
+}
 .stage.wall-collision {
   animation: shake 500ms infinite;
   background-color: red;
@@ -39,6 +42,28 @@ body{
 .stage.obstacle-collision {
   animation: shake 500ms infinite;
   background: linear-gradient(135deg, #8b5cf6, #a855f7, #9333ea);
+}
+.stage.target-reached {
+  animation: celebrate 2s ease-in-out;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+}
+
+@keyframes celebrate {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .obstacle {
