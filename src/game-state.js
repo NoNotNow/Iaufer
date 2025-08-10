@@ -8,7 +8,8 @@ export const gameState = {
     { x: 10, y: 8 },
     { x: 15, y: 12 },
     { x: 7, y: 15 }
-  ]
+  ],
+  target: { x: 18, y: 18 }
 };
 
 export function resetPosition() {
