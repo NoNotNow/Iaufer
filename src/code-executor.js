@@ -79,6 +79,22 @@ function parseUserCode(code) {
   return userFunction;
 }
 
+// Execute user function repeatedly until stopped
+async function executeUntilStopped(userFunction) {
+  while (isRunning) {
+    try {
+      await userFunction(wrappedGo, wrappedLeft, wrappedRight);
+    } catch (error) {
+      if (error.message === "Execution stopped") {
+        throw error; // Re-throw to be caught by start()
+      } else {
+        console.error("Runtime error:", error);
+        throw error;
+      }
+    }
+  }
+}
+
 export async function start() {
   if (isRunning) {
     stop();
@@ -95,10 +111,10 @@ export async function start() {
     isRunning = true;
     console.log("Starting execution...");
     
-    // Execute user function once
-    await userFunction(wrappedGo, wrappedLeft, wrappedRight);
+    // Execute user function repeatedly until stopped
+    await executeUntilStopped(userFunction);
     
-    console.log("Program completed");
+    console.log("Continuous execution completed");
   } catch (error) {
     if (error.message === "Execution stopped") {
       console.log("Program stopped by user.");
