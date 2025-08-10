@@ -26,10 +26,10 @@ body{
   z-index: 3;
   transition: all 150ms ease-in-out;
 }
-.avatar.crash {
+.avatar.wall-collision {
   border-bottom: 2em solid red;
 }
-.stage.crash {
+.stage.wall-collision {
   animation: shake 500ms infinite;
   background-color: red;
 }
