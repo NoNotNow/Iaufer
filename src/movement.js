@@ -7,7 +7,8 @@ import { updateView } from './view-renderer.js';
 
 // Check if the avatar can move forward without hitting an obstacle
 export function free() {
-  const { x, y } = gameState.position;
+  const x = gameState.position.x;
+  const y = gameState.position.y;
   const direction = gameState.direction;
   
   // Calculate the position one step ahead
@@ -30,12 +31,28 @@ export function free() {
   }
   
   // Check bounds
-  if (nextX < 0 || nextX >= gameState.gridSize || nextY < 0 || nextY >= gameState.gridSize) {
+  if (nextX < 0 || nextX > gameState.stageSize.x || nextY < 0 || nextY > gameState.stageSize.y) {
     return false;
   }
   
   // Check for obstacles
-  return !gameState.obstacles.some(obstacle => obstacle.x === nextX && obstacle.y === nextY);
+  const avatarLeft = nextX;
+  const avatarRight = nextX + 2;
+  const avatarTop = nextY;
+  const avatarBottom = nextY + 2;
+  
+  return !gameState.obstacles.some(obstacle => {
+    const obstacleLeft = obstacle.x;
+    const obstacleRight = obstacle.x + 2;
+    const obstacleTop = obstacle.y;
+    const obstacleBottom = obstacle.y + 2;
+    
+    // Check for overlap in both x and y directions
+    return !(avatarRight <= obstacleLeft || 
+             avatarLeft >= obstacleRight || 
+             avatarBottom <= obstacleTop || 
+             avatarTop >= obstacleBottom);
+  });
 }
 
 export function go(input) {
