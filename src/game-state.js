@@ -4,10 +4,20 @@ export const gameState = {
   stageSize: { x: 20, y: 20 },
   direction: 1,
   obstacles: [
-    { x: 5, y: 5 },
-    { x: 10, y: 8 },
-    { x: 15, y: 12 },
-    { x: 7, y: 15 }
+    // Vertical walls
+    { x: 4, y: 2 }, { x: 4, y: 3 }, { x: 4, y: 4 }, { x: 4, y: 5 },
+    { x: 8, y: 6 }, { x: 8, y: 7 }, { x: 8, y: 8 }, { x: 8, y: 9 },
+    { x: 12, y: 2 }, { x: 12, y: 3 }, { x: 12, y: 4 }, { x: 12, y: 5 },
+    { x: 16, y: 8 }, { x: 16, y: 9 }, { x: 16, y: 10 }, { x: 16, y: 11 },
+    
+    // Horizontal walls
+    { x: 2, y: 6 }, { x: 3, y: 6 }, { x: 5, y: 6 }, { x: 6, y: 6 },
+    { x: 10, y: 10 }, { x: 11, y: 10 }, { x: 13, y: 10 }, { x: 14, y: 10 },
+    { x: 6, y: 14 }, { x: 7, y: 14 }, { x: 8, y: 14 }, { x: 9, y: 14 },
+    { x: 14, y: 14 }, { x: 15, y: 14 }, { x: 17, y: 14 }, { x: 18, y: 14 },
+    
+    // Corner pieces and strategic blocks
+    { x: 2, y: 12 }, { x: 10, y: 4 }, { x: 14, y: 6 }, { x: 6, y: 16 }
   ],
   target: { x: 18, y: 18 }
 };
