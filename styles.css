@@ -85,7 +85,7 @@ body{
   border: 3px solid #16a34a;
   border-radius: 50%;
   box-shadow: 0 0 15px #22c55e, inset 0 0 10px #16a34a;
-  z-index: 2;
+  z-index: 10;
   animation: targetPulse 1.5s infinite;
 }
 
