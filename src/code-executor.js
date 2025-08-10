@@ -53,6 +53,13 @@ async function wrappedRight(input) {
   await movementDelay();
 }
 
+// Import and wrap the free function
+import { free } from './movement.js';
+
+function wrappedFree() {
+  return free();
+}
+
 // Transform user code to use wrapped functions
 function transformCode(code) {
   // Replace function calls with wrapped versions
