@@ -40,7 +40,46 @@ function transformCode(code) {
   return transformedLines.join('\n');
 }
 
+// Parse and prepare user code for execution
+function parseUserCode(code) {
+  if (!code.trim()) {
+    throw new Error("No code to execute");
+  }
+
+  // Transform the user's code to add automatic delays
+  const transformedCode = transformCode(code);
+  console.log("Transformed code:", transformedCode);
+  
+  // Create an async function from the transformed code
+  const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+  return new AsyncFunction(`
+    // Import movement functions and delay into execution context
+    const { go, left, right } = await import('./movement.js');
+    const { delay } = await import('./code-executor.js');
+    
+    // Transformed user's code with automatic delays
+    ${transformedCode}
+  `);
+}
+
 let isRunning = false;
+let currentExecution = null;
+
+// Execute user function continuously until stopped
+async function executeUntilStopped(userFunction) {
+  while (isRunning) {
+    try {
+      await userFunction();
+      // If we reach here and still running, the program completed - run again
+      if (isRunning) {
+        console.log("Program completed, restarting...");
+      }
+    } catch (error) {
+      console.error("Execution error:", error);
+      break;
+    }
+  }
+}
 
 export async function start() {
   if (isRunning) {
@@ -49,38 +88,25 @@ export async function start() {
   }
 
   let textbox = document.getElementById("code");
-  let code = textbox.value.trim();
-
-  if (!code) {
-    console.log("No code to execute");
-    return;
-  }
-
-  isRunning = true;
-  console.log("Starting async execution...");
+  let code = textbox.value;
 
   try {
-    // Transform the user's code to add automatic delays
-    const transformedCode = transformCode(code);
-    console.log("Transformed code:", transformedCode);
+    // Parse the user's code
+    const userFunction = parseUserCode(code);
     
-    // Create an async function from the transformed code
-    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-    const userFunction = new AsyncFunction(`
-      // Import movement functions and delay into execution context
-      const { go, left, right } = await import('./movement.js');
-      const { delay } = await import('./code-executor.js');
-      
-      // Transformed user's code with automatic delays
-      ${transformedCode}
-    `);
-
-    await userFunction();
-    console.log("Execution completed successfully");
+    isRunning = true;
+    console.log("Starting continuous execution...");
+    
+    // Start continuous execution
+    currentExecution = executeUntilStopped(userFunction);
+    await currentExecution;
+    
+    console.log("Execution stopped");
   } catch (error) {
-    console.error("Execution error:", error);
+    console.error("Parse error:", error);
   } finally {
     isRunning = false;
+    currentExecution = null;
   }
 }
 
