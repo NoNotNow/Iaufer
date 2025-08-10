@@ -5,6 +5,14 @@ export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Generic wrapper function that adds delay and other logic
+function createWrappedFunction(originalFunction) {
+  return async function(input) {
+    originalFunction(input);
+    await delay();
+  };
+}
+
 // Wrapper functions that add delays and other logic
 async function wrappedGo(input) {
   const { go } = await import('./movement.js');
