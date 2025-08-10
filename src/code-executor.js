@@ -5,6 +5,25 @@ export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Wrapper functions that add delays and other logic
+async function wrappedGo(input) {
+  const { go } = await import('./movement.js');
+  go(input);
+  await delay();
+}
+
+async function wrappedLeft(input) {
+  const { left } = await import('./movement.js');
+  left(input);
+  await delay();
+}
+
+async function wrappedRight(input) {
+  const { right } = await import('./movement.js');
+  right(input);
+  await delay();
+}
+
 // Transform user code to use wrapped functions
 function transformCode(code) {
   // Replace function calls with wrapped versions
@@ -30,13 +49,13 @@ function parseUserCode(code) {
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
   return new AsyncFunction(`
     // Import wrapped movement functions into execution context
-    const go = this.wrappedGo;
-    const left = this.wrappedLeft;
-    const right = this.wrappedRight;
+    const go = this.go;
+    const left = this.left;
+    const right = this.right;
     
     // Transformed user's code
     ${transformedCode}
-  `).bind({ wrappedGo, wrappedLeft, wrappedRight });
+  `).bind({ go: wrappedGo, left: wrappedLeft, right: wrappedRight });
 }
 
 let isRunning = false;
