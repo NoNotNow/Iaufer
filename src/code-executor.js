@@ -4,10 +4,33 @@ import { go, left, right } from './movement.js';
 // Global execution state
 let isRunning = false;
 let currentExecution = null;
+let currentDelay = null;
 
 // Non-blocking delay function
-export function delay(ms = 300) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function delay(ms = 300) {
+  return new Promise((resolve, reject) => {
+    if (!isRunning) {
+      reject(new Error("Execution stopped"));
+      return;
+    }
+    
+    const timeoutId = setTimeout(() => {
+      currentDelay = null;
+      if (isRunning) {
+        resolve();
+      } else {
+        reject(new Error("Execution stopped"));
+      }
+    }, ms);
+    
+    currentDelay = {
+      cancel: () => {
+        clearTimeout(timeoutId);
+        currentDelay = null;
+        reject(new Error("Execution stopped"));
+      }
+    };
+  });
 }
 
 // Explicit wrapped functions
@@ -104,5 +127,8 @@ export async function start() {
 
 export function stop() {
   isRunning = false;
+  if (currentDelay) {
+    currentDelay.cancel();
+  }
   console.log("Execution stopped");
 }
