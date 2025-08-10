@@ -7,7 +7,8 @@ import { updateView } from './view-renderer.js';
 
 // Check if the avatar can move forward without hitting an obstacle
 export function free() {
-  const { x, y, direction } = gameState.avatar;
+  const { x, y } = gameState.position;
+  const direction = gameState.direction;
   
   // Calculate the position one step ahead
   let nextX = x;
