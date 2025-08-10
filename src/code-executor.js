@@ -9,7 +9,7 @@ let currentDelay = null;
 function delay(ms = 300) {
   return new Promise((resolve, reject) => {
     if (!isRunning) {
-      resolve();
+      reject(new Error("Execution stopped"));
       return;
     }
     
@@ -18,7 +18,7 @@ function delay(ms = 300) {
       if (isRunning) {
         resolve();
       } else {
-        resolve();
+        reject(new Error("Execution stopped"));
       }
     }, ms);
     
@@ -26,7 +26,7 @@ function delay(ms = 300) {
       cancel: () => {
         clearTimeout(timeoutId);
         currentDelay = null;
-        resolve();
+        reject(new Error("Execution stopped"));
       }
     };
   });
