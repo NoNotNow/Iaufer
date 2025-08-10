@@ -3,7 +3,6 @@ import { go, left, right } from './movement.js';
 
 // Global execution state
 let isRunning = false;
-let currentExecution = null;
 let currentDelay = null;
 
 // Non-blocking delay function
@@ -80,22 +79,6 @@ function parseUserCode(code) {
   return userFunction;
 }
 
-// Execute user function continuously until stopped
-async function executeUntilStopped(userFunction) {
-  while (isRunning) {
-    try {
-      await userFunction(wrappedGo, wrappedLeft, wrappedRight);
-      // If we reach here and still running, the program completed - run again
-      if (isRunning) {
-        console.log("Program completed, restarting...");
-      }
-    } catch (error) {
-      console.error("Execution error:", error);
-      break;
-    }
-  }
-}
-
 export async function start() {
   if (isRunning) {
     stop();
@@ -110,18 +93,20 @@ export async function start() {
     const userFunction = parseUserCode(code);
     
     isRunning = true;
-    console.log("Starting continuous execution...");
+    console.log("Starting execution...");
     
-    // Start continuous execution
-    currentExecution = executeUntilStopped(userFunction);
-    await currentExecution;
+    // Execute user function once
+    await userFunction(wrappedGo, wrappedLeft, wrappedRight);
     
-    console.log("Execution stopped");
+    console.log("Program completed");
   } catch (error) {
-    console.error("Parse error:", error);
+    if (error.message === "Execution stopped") {
+      console.log("Program stopped by user.");
+    } else {
+      console.error("Parse error:", error);
+    }
   } finally {
     isRunning = false;
-    currentExecution = null;
   }
 }
 
