@@ -93,7 +93,7 @@ function parseUserCode(code) {
 async function executeUntilStopped(userFunction) {
   while (isRunning) {
     try {
-      await userFunction(wrappedGo, wrappedLeft, wrappedRight, free);
+      await userFunction(wrappedGo, wrappedLeft, wrappedRight, wrappedFree);
     } catch (error) {
       if (error.message === "Execution stopped") {
         throw error; // Re-throw to be caught by start()
