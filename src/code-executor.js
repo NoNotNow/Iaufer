@@ -1,5 +1,5 @@
 // Code execution and program control
-import { go, left, right } from './movement.js';
+import { go, left, right, free } from './movement.js';
 
 // Global execution state
 let isRunning = false;
