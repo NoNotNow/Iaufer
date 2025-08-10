@@ -32,20 +32,25 @@ function delay(ms = 300) {
   });
 }
 
+// Extensible delay function for movement commands
+async function movementDelay() {
+  await delay();
+}
+
 // Explicit wrapped functions
 async function wrappedGo(input) {
   go(input);
-  await delay();
+  await movementDelay();
 }
 
 async function wrappedLeft(input) {
   left(input);
-  await delay();
+  await movementDelay();
 }
 
 async function wrappedRight(input) {
   right(input);
-  await delay();
+  await movementDelay();
 }
 
 // Transform user code to use wrapped functions
