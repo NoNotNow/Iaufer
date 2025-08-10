@@ -88,7 +88,7 @@ function parseUserCode(code) {
 async function executeUntilStopped(userFunction) {
   while (isRunning) {
     try {
-      await userFunction(wrappedGo, wrappedLeft, wrappedRight, free);
+      await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
       // Small delay at the end of each execution cycle
       await delay(100);
     } catch (error) {
