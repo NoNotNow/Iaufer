@@ -49,9 +49,14 @@ function parseUserCode(code) {
 
 // Execute user function continuously until stopped
 async function executeUntilStopped(userFunction) {
+  // Create wrapped versions of movement functions
+  const wrappedGo = createWrappedFunction(go);
+  const wrappedLeft = createWrappedFunction(left);
+  const wrappedRight = createWrappedFunction(right);
+  
   while (isRunning) {
     try {
-      await userFunction();
+      await userFunction(wrappedGo, wrappedLeft, wrappedRight);
       // If we reach here and still running, the program completed - run again
       if (isRunning) {
         console.log("Program completed, restarting...");
