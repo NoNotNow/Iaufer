@@ -89,6 +89,8 @@ async function executeUntilStopped(userFunction) {
   while (isRunning) {
     try {
       await userFunction(wrappedGo, wrappedLeft, wrappedRight, free);
+      // Small delay at the end of each execution cycle
+      await delay(100);
     } catch (error) {
       if (error.message === "Execution stopped") {
         throw error; // Re-throw to be caught by start()
