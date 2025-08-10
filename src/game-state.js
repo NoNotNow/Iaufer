@@ -2,8 +2,7 @@
 export const gameState = {
   position: { x: 0, y: 0 },
   stageSize: { x: 20, y: 20 },
-  direction: 1,
-  isRunning: false
+  direction: 1
 };
 
 export function resetPosition() {

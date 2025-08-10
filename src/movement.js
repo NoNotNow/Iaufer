@@ -2,9 +2,8 @@
 import { gameState, setDirection, parseNumber, withinBounds } from './game-state.js';
 import { handleWallCollision } from './crash-handler.js';
 import { updateView } from './view-renderer.js';
-import { delay } from './code-executor.js';
 
-export async function go(input) {
+export function go(input) {
   let steps = parseNumber(input);
   switch (gameState.direction) {
     case 0:
@@ -23,29 +22,14 @@ export async function go(input) {
 
   if (!withinBounds()) handleWallCollision();
   updateView();
-  
-  // Add delay only when running a program
-  if (gameState.isRunning) {
-    await delay();
-  }
 }
 
-export async function right(input) {
+export function right(input) {
   setDirection(gameState.direction + parseNumber(input));
   updateView();
-  
-  // Add delay only when running a program
-  if (gameState.isRunning) {
-    await delay();
-  }
 }
 
-export async function left(input) {
+export function left(input) {
   setDirection(gameState.direction - parseNumber(input));
   updateView();
-  
-  // Add delay only when running a program
-  if (gameState.isRunning) {
-    await delay();
-  }
 }

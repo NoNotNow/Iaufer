@@ -1,13 +1,49 @@
 // Code execution and program control
-import { gameState } from './game-state.js';
 
 // Non-blocking delay function
 export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Transform user code to automatically add delays after each line
+function transformCode(code) {
+  // Split code into lines and process each one
+  const lines = code.split('\n');
+  const transformedLines = [];
+  
+  for (let line of lines) {
+    const trimmedLine = line.trim();
+    
+    // Skip empty lines and comments
+    if (!trimmedLine || trimmedLine.startsWith('//') || trimmedLine.startsWith('/*')) {
+      transformedLines.push(line);
+      continue;
+    }
+    
+    // Skip control structure lines (they don't need delays)
+    if (trimmedLine.match(/^\s*(for|while|if|else|function|var|let|const|return|\}|\{)/)) {
+      transformedLines.push(line);
+      continue;
+    }
+    
+    // Add the original line
+    transformedLines.push(line);
+    
+    // Add delay after lines that contain movement commands
+    if (trimmedLine.includes('go(') || trimmedLine.includes('left(') || trimmedLine.includes('right(')) {
+      // Match the indentation of the current line
+      const indentation = line.match(/^\s*/)[0];
+      transformedLines.push(indentation + 'await delay();');
+    }
+  }
+  
+  return transformedLines.join('\n');
+}
+
+let isRunning = false;
+
 export async function start() {
-  if (gameState.isRunning) {
+  if (isRunning) {
     stop();
     return;
   }
@@ -20,20 +56,23 @@ export async function start() {
     return;
   }
 
-  gameState.isRunning = true;
+  isRunning = true;
   console.log("Starting async execution...");
 
   try {
-    // Create an async function from the user's code
-    // We need to make movement functions available in the execution context
+    // Transform the user's code to add automatic delays
+    const transformedCode = transformCode(code);
+    console.log("Transformed code:", transformedCode);
+    
+    // Create an async function from the transformed code
     const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
     const userFunction = new AsyncFunction(`
-      // Import movement functions into execution context
+      // Import movement functions and delay into execution context
       const { go, left, right } = await import('./movement.js');
       const { delay } = await import('./code-executor.js');
       
-      // User's code
-      ${code}
+      // Transformed user's code with automatic delays
+      ${transformedCode}
     `);
 
     await userFunction();
@@ -41,12 +80,12 @@ export async function start() {
   } catch (error) {
     console.error("Execution error:", error);
   } finally {
-    gameState.isRunning = false;
+    isRunning = false;
   }
 }
 
 export function stop() {
-  gameState.isRunning = false;
+  isRunning = false;
   console.log("Execution stopped");
 }
 
