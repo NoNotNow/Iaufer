@@ -1,5 +1,9 @@
 // Code execution and program control
 
+// Global execution state
+let isRunning = false;
+let currentExecution = null;
+
 // Non-blocking delay function
 export function delay(ms = 300) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -11,6 +15,7 @@ function createWrappedFunction(originalFunction) {
     originalFunction(input);
     await delay();
   };
+}
 
 
 // Transform user code to use wrapped functions
