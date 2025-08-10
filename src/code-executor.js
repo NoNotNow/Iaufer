@@ -1,5 +1,4 @@
 // Code execution and program control
-import { go, left, right } from './movement.js';
 
 // Global execution state
 let isRunning = false;
@@ -36,16 +35,46 @@ function parseUserCode(code) {
     throw new Error("No code to execute");
   }
 
+  // Temporarily assign functions to global scope for parsing
+  const originalGo = window.go;
+  const originalLeft = window.left;
+  const originalRight = window.right;
+  
+  window.go = go;
+  window.left = left;
+  window.right = right;
+
   // Transform the user's code to use wrapped functions
   const transformedCode = transformCode(code);
   console.log("Transformed code:", transformedCode);
   
-  // Create an async function from the transformed code
-  const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-  return new AsyncFunction('go', 'left', 'right', `
-    // User's transformed code with movement functions available as parameters
-    ${transformedCode}
-  `);
+  try {
+    // Create an async function from the transformed code
+    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+    const userFunction = new AsyncFunction('go', 'left', 'right', `
+      // User's transformed code with movement functions available as parameters
+      ${transformedCode}
+    `);
+    
+    return userFunction;
+  } finally {
+    // Clean up global assignments
+    if (originalGo !== undefined) {
+      window.go = originalGo;
+    } else {
+      delete window.go;
+    }
+    if (originalLeft !== undefined) {
+      window.left = originalLeft;
+    } else {
+      delete window.left;
+    }
+    if (originalRight !== undefined) {
+      window.right = originalRight;
+    } else {
+      delete window.right;
+    }
+  }
 }
 
 // Execute user function continuously until stopped
