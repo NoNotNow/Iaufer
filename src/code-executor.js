@@ -53,6 +53,11 @@ async function wrappedRight(input) {
   await movementDelay();
 }
 
+async function wrappedFree() {
+  const result = free();
+  await movementDelay();
+  return result;
+}
 // Transform user code to use wrapped functions
 function transformCode(code) {
   // Replace function calls with wrapped versions
