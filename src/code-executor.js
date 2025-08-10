@@ -11,26 +11,7 @@ function createWrappedFunction(originalFunction) {
     originalFunction(input);
     await delay();
   };
-}
 
-// Wrapper functions that add delays and other logic
-async function wrappedGo(input) {
-  const { go } = await import('./movement.js');
-  go(input);
-  await delay();
-}
-
-async function wrappedLeft(input) {
-  const { left } = await import('./movement.js');
-  left(input);
-  await delay();
-}
-
-async function wrappedRight(input) {
-  const { right } = await import('./movement.js');
-  right(input);
-  await delay();
-}
 
 // Transform user code to use wrapped functions
 function transformCode(code) {
