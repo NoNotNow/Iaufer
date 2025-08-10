@@ -1,6 +1,14 @@
 // Code execution and program control
 import { go, left, right, free } from './movement.js';
 
+// Random number generator function
+function random(x) {
+  if (typeof x !== 'number' || x < 1) {
+    throw new Error("random() requires a positive number");
+  }
+  return Math.floor(Math.random() * x) + 1;
+}
+
 // Global execution state
 let isRunning = false;
 let currentDelay = null;
