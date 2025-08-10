@@ -76,7 +76,7 @@ function parseUserCode(code) {
   
   // Create an async function from the transformed code
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-  const userFunction = new AsyncFunction('go', 'left', 'right', `
+  const userFunction = new AsyncFunction('go', 'left', 'right', 'free', `
     // User's transformed code with movement functions available as parameters
     ${transformedCode}
   `);
