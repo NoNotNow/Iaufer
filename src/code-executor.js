@@ -53,13 +53,6 @@ async function wrappedRight(input) {
   await movementDelay();
 }
 
-// Import and wrap the free function from game-state
-import { free } from './game-state.js';
-
-function wrappedFree() {
-  return free();
-}
-
 // Transform user code to use wrapped functions
 function transformCode(code) {
   // Replace function calls with wrapped versions
@@ -95,7 +88,7 @@ function parseUserCode(code) {
 async function executeUntilStopped(userFunction) {
   while (isRunning) {
     try {
-      await userFunction(wrappedGo, wrappedLeft, wrappedRight, wrappedFree);
+      await userFunction(wrappedGo, wrappedLeft, wrappedRight);
     } catch (error) {
       if (error.message === "Execution stopped") {
         throw error; // Re-throw to be caught by start()
