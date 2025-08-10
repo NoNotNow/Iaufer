@@ -35,7 +35,22 @@ export function parseNumber(input) {
 }
 
 export function checkObstacleCollision() {
-  return gameState.obstacles.some(obstacle => 
-    obstacle.x === gameState.position.x && obstacle.y === gameState.position.y
+  const avatarLeft = gameState.position.x;
+  const avatarRight = gameState.position.x + 2;
+  const avatarTop = gameState.position.y;
+  const avatarBottom = gameState.position.y + 2;
+  
+  return gameState.obstacles.some(obstacle => {
+    const obstacleLeft = obstacle.x;
+    const obstacleRight = obstacle.x + 2;
+    const obstacleTop = obstacle.y;
+    const obstacleBottom = obstacle.y + 2;
+    
+    // Check for overlap in both x and y directions
+    return !(avatarRight <= obstacleLeft || 
+             avatarLeft >= obstacleRight || 
+             avatarBottom <= obstacleTop || 
+             avatarTop >= obstacleBottom);
+  }
   );
 }
