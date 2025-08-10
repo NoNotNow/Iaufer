@@ -134,6 +134,7 @@ export async function start() {
     }
   } finally {
     isRunning = false;
+  }
 }
 
 export function stop() {
