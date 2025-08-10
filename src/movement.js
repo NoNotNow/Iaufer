@@ -1,6 +1,6 @@
 // Movement and direction controls
 import { gameState, setDirection, parseNumber, withinBounds } from './game-state.js';
-import { handleWallCollision } from './wall-collision-handler.js';
+import { handleWallCollision } from './crash-handler.js';
 import { updateView } from './view-renderer.js';
 
 export function go(input) {
