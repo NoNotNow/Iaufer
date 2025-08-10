@@ -110,8 +110,3 @@ export function stop() {
   isRunning = false;
   console.log("Execution stopped");
 }
-
-// Legacy execute function - no longer used but kept for compatibility
-export function execute() {
-  console.log("Legacy execute function called - use start() instead");
-}
