@@ -100,6 +100,12 @@ async function executeUntilStopped(userFunction) {
   }
 }
 
+function showLineIndicator(lineNumber) {
+  const indicator = document.getElementById('line-indicator');
+  indicator.textContent = `Executing Line: ${lineNumber}`;
+  indicator.style.display = 'block';
+}
+
 export async function start() {
   if (isRunning) {
     stop();
