@@ -41,19 +41,10 @@ function parseUserCode(code) {
   
   // Create an async function from the transformed code
   const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-  return new AsyncFunction(`
-    // Import wrapped movement functions into execution context
-    const go = this.go;
-    const left = this.left;
-    const right = this.right;
-    
-    // Transformed user's code
+  return new AsyncFunction('go', 'left', 'right', `
+    // User's transformed code with movement functions available as parameters
     ${transformedCode}
-  `).bind({
-    go: createWrappedFunction(go),
-    left: createWrappedFunction(left),
-    right: createWrappedFunction(right)
-  });
+  `);
 }
 
 // Execute user function continuously until stopped
