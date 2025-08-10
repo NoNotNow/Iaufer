@@ -1,42 +1,56 @@
 // Code execution and program control
 import { gameState } from './game-state.js';
 
-export function start() {
-  if (gameState.interval) clearInterval(gameState.interval);
-
-  let textbox = document.getElementById("code");
-  let code = textbox.value;
-
-  // Split code into lines and filter out empty lines
-  gameState.lines = code.split("\n").filter((line) => line.trim() !== "");
-  gameState.currentLine = 0;
-
-  if (gameState.lines.length > 0) {
-    gameState.interval = setInterval(execute, 300);
-  }
+// Non-blocking delay function
+export function delay(ms = 300) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export function execute() {
-  if (gameState.currentLine < gameState.lines.length) {
-    let line = gameState.lines[gameState.currentLine].trim();
-    console.log(`Executing line ${gameState.currentLine + 1}: ${line}`);
+export async function start() {
+  if (gameState.isRunning) {
+    stop();
+    return;
+  }
 
-    try {
-      eval(line);
-    } catch (error) {
-      console.error(`Error on line ${gameState.currentLine + 1}:`, error);
-    }
+  let textbox = document.getElementById("code");
+  let code = textbox.value.trim();
 
-    gameState.currentLine++;
-  } else {
-    gameState.currentLine = 0;
-    console.log("All lines executed");
+  if (!code) {
+    console.log("No code to execute");
+    return;
+  }
+
+  gameState.isRunning = true;
+  console.log("Starting async execution...");
+
+  try {
+    // Create an async function from the user's code
+    // We need to make movement functions available in the execution context
+    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+    const userFunction = new AsyncFunction(`
+      // Import movement functions into execution context
+      const { go, left, right } = await import('./movement.js');
+      const { delay } = await import('./code-executor.js');
+      
+      // User's code
+      ${code}
+    `);
+
+    await userFunction();
+    console.log("Execution completed successfully");
+  } catch (error) {
+    console.error("Execution error:", error);
+  } finally {
+    gameState.isRunning = false;
   }
 }
 
 export function stop() {
-  if (gameState.interval) clearInterval(gameState.interval);
-  gameState.interval = null;
-  gameState.currentLine = 0;
+  gameState.isRunning = false;
   console.log("Execution stopped");
+}
+
+// Legacy execute function - no longer used but kept for compatibility
+export function execute() {
+  console.log("Legacy execute function called - use start() instead");
 }

@@ -3,9 +3,7 @@ export const gameState = {
   position: { x: 0, y: 0 },
   stageSize: { x: 20, y: 20 },
   direction: 1,
-  interval: null,
-  currentLine: 0,
-  lines: []
+  isRunning: false
 };
 
 export function resetPosition() {
