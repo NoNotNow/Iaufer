@@ -37,4 +37,28 @@ export function updateStageView() {
   targetElement.style.left = gameState.target.x + 'em';
   targetElement.style.top = gameState.target.y + 'em';
   stage.appendChild(targetElement);
+  
+  // Clear existing obstacles
+  const existingObstacles = stage.querySelectorAll('.obstacle');
+  existingObstacles.forEach(obstacle => obstacle.remove());
+  
+  // Clear existing target
+  const existingTarget = stage.querySelector('.target');
+  if (existingTarget) existingTarget.remove();
+  
+  // Add obstacles to the stage
+  gameState.obstacles.forEach(obstacle => {
+    const obstacleElement = document.createElement('div');
+    obstacleElement.className = 'obstacle';
+    obstacleElement.style.left = obstacle.x + 'em';
+    obstacleElement.style.top = obstacle.y + 'em';
+    stage.appendChild(obstacleElement);
+  });
+  
+  // Add target to the stage
+  const targetElement = document.createElement('div');
+  targetElement.className = 'target';
+  targetElement.style.left = gameState.target.x + 'em';
+  targetElement.style.top = gameState.target.y + 'em';
+  stage.appendChild(targetElement);
 }
