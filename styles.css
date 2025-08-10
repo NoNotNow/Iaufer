@@ -6,7 +6,7 @@ body{
   top: 0;
   left: 0;
   position: absolute;
-  background-color: orange;
+  background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
   z-index: -1;
   transition-duration: 60ms;
   border: 2px solid black;
