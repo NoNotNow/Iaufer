@@ -68,8 +68,8 @@ body{
 
 .obstacle {
   position: absolute;
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  height: 1em;
   background: linear-gradient(135deg, #374151, #1f2937);
   border: 2px solid #000;
   border-radius: 0.2em;
