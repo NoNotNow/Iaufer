@@ -8,42 +8,44 @@
     <script type="module" src="src/main.js"></script>
   </head>
   <body>
-    <div class="game-container">
-      <div class="stage" id="stage">
-        <div id="avatar" class="avatar"></div>
+    <div class="page-container">
+      <div class="game-container">
+        <div class="stage" id="stage">
+          <div id="avatar" class="avatar"></div>
+        </div>
+        <div class="displays">
+          <div id="timer" class="timer">123</div>
+          <div id="errorMessage" class="error-message"></div>
+        </div>
       </div>
-      <div class="displays">
-        <div id="timer" class="timer">123</div>
-        <div id="errorMessage" class="error-message"></div>
-      </div>
-    </div>
-    <div class="controls">
-      <div class="textarea-container">
-        <textarea id="code" rows="10" class="text">go();</textarea>
-        <button class="clear-button" id="clearButton">×</button>
-      </div>
-      <div class="buttons">
-        <button class="move" id="goButton">
-          go()
-        </button>
-        <button class="move left" id="leftButton">
-          left()
-        </button>
-        <button class="move right" id="rightButton">
-          right()
-        </button>
-        <button class="move reset" id="resetButton">
-          reset
-        </button>
-        <button class="start" id="startButton">
-          START
-        </button>
-        <button class="stop" id="stopButton">
-          STOP
-        </button>
-        <button class="save" id="saveButton">
-          SAVE
-        </button>
+      <div class="controls">
+        <div class="textarea-container">
+          <textarea id="code" rows="10" class="text">go();</textarea>
+          <button class="clear-button" id="clearButton">×</button>
+        </div>
+        <div class="buttons">
+          <button class="move" id="goButton">
+            go()
+          </button>
+          <button class="move left" id="leftButton">
+            left()
+          </button>
+          <button class="move right" id="rightButton">
+            right()
+          </button>
+          <button class="move reset" id="resetButton">
+            reset
+          </button>
+          <button class="start" id="startButton">
+            START
+          </button>
+          <button class="stop" id="stopButton">
+            STOP
+          </button>
+          <button class="save" id="saveButton">
+            SAVE
+          </button>
+        </div>
       </div>
     </div>
   </body>
