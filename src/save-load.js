@@ -1,29 +1,25 @@
-// Save and load functionality for code
-export function saveCode() {
-  const textbox = document.getElementById("code");
-  const code = textbox.value;
-  
-  // Save to cookie with 30 day expiration
-  const expires = new Date();
-  expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
-  document.cookie = `savedCode=${encodeURIComponent(code)}; expires=${expires.toUTCString()}; path=/`;
-  
-  console.log("Code saved to cookies");
+// Main application entry point
+import { updateStageView, updateView } from './view-renderer.js';
+import { setupEventListeners } from './event-handlers.js';
+  console.log("All cookies:", document.cookie);
+  console.log("Cookie array:", cookies);
+import { loadCode } from './save-load.js';
+
+    console.log("Checking cookie:", name, "=", value);
+function main() {
+  console.log("Main function called");
+      console.log("Found saved code, textbox element:", textbox);
+  setupEventListeners();
+  console.log("Event listeners set up");
+        console.log("Code loaded into textbox:", decodeURIComponent(value));
+  updateStageView();
+  console.log("Stage view updated");
+  updateView();
+  console.log("View updated");
+  loadCode();
+  console.log("Code loaded");
 }
 
-export function loadCode() {
-  // Read from cookies
-  const cookies = document.cookie.split(';');
-  for (let cookie of cookies) {
-    const [name, value] = cookie.trim().split('=');
-    if (name === 'savedCode') {
-      const textbox = document.getElementById("code");
-      if (textbox) {
-        textbox.value = decodeURIComponent(value);
-        console.log("Code loaded from cookies");
-      }
-      return;
-    }
-  }
-  console.log("No saved code found");
-}
+// Wait for DOM to be fully loaded before initializing
+document.addEventListener("DOMContentLoaded", main);
+  console.log("loadCode() function called");
