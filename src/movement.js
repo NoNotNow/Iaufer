@@ -43,9 +43,9 @@ export function free() {
   
   return !gameState.obstacles.some(obstacle => {
     const obstacleLeft = obstacle.x;
-    const obstacleRight = obstacle.x + 2;
+    const obstacleRight = obstacle.x + 1;
     const obstacleTop = obstacle.y;
-    const obstacleBottom = obstacle.y + 2;
+    const obstacleBottom = obstacle.y + 1;
     
     // Check for overlap in both x and y directions
     return !(avatarRight <= obstacleLeft || 
