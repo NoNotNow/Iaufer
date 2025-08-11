@@ -6,6 +6,32 @@ body{
   min-height: 100vh;
 }
 
+@media (max-width: 17cm) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stage {
+    width: 100% !important;
+    max-width: 100%;
+    aspect-ratio: 1;
+  }
+  
+  .displays {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+  }
+  
+  .timer {
+    font-size: 1.5em;
+    max-width: 8em;
+    min-width: 6em;
+    padding: 0.3em 0.5em;
+  }
+}
 
 .page-container {
   max-width: 1200px;
