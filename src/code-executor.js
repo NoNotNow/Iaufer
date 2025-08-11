@@ -1,6 +1,6 @@
 // Code execution and program control
 import { go, left, right, free } from './movement.js';
-import { startTimer } from './timer.js';
+import { startTimer, stopTimer, resetTimer } from './timer.js';
 
 // Random number generator function
 function random(x) {
