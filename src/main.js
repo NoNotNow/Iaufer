@@ -21,8 +21,15 @@ function main() {
   loadCode();
   console.log("Code loaded");
   
-  // Redraw grid on window resize
-  window.addEventListener('resize', drawGrid);
+  // Redraw grid on window resize with debouncing
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      drawGrid();
+      console.log("Grid redrawn after resize");
+    }, 100);
+  });
 }
 
 // Wait for DOM to be fully loaded before initializing
