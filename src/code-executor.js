@@ -147,6 +147,8 @@ export async function start() {
       stopTimer();
     } else {
       console.error("Runtime error in user code:", error);
+      const errorMessage = document.getElementById('errorMessage');
+      errorMessage.textContent = error.message;
       stopTimer();
       resetTimer();
     }
