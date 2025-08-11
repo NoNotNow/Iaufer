@@ -10,6 +10,7 @@ body{
   background: linear-gradient(135deg, #3b82f6, #1e40af);
   transition-duration: 60ms;
   border: 0.125em solid black;
+  border: 0.125em solid black;
   box-sizing: border-box;
   flex-shrink: 0;
   overflow: hidden;
