@@ -11,8 +11,13 @@ function main() {
   console.log("Stage view updated");
   updateView();
   console.log("View updated");
-  drawGrid();
-  console.log("Grid drawn");
+  
+  // Draw grid after a short delay to ensure stage is rendered
+  setTimeout(() => {
+    drawGrid();
+    console.log("Grid drawn");
+  }, 100);
+  
   loadCode();
   console.log("Code loaded");
   
