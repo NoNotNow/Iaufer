@@ -51,8 +51,14 @@ function handleGridClick(event) {
   const gridX = Math.floor(x / gridSize);
   const gridY = Math.floor(y / gridSize);
   
+  console.log('Click at pixel:', x, y);
+  console.log('Grid coordinates:', gridX, gridY);
+  console.log('Stage size:', gameState.stageSize.x, gameState.stageSize.y);
+  console.log('Bounds check:', gridX >= 0, gridX <= gameState.stageSize.x, gridY >= 0, gridY <= gameState.stageSize.y);
+  
   // Check if click is within valid grid bounds
   if (gridX < 0 || gridX >= gameState.stageSize.x + 1 || gridY < 0 || gridY >= gameState.stageSize.y + 1) {
+    console.log('Click outside bounds, ignoring');
     return;
   }
   
