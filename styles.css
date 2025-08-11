@@ -1,30 +1,11 @@
 body{
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
-  background-size: 600% 600%;
-  animation: gradientFlow 200s ease infinite;
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab, #4ecdc4);
   margin: 0;
   padding: 1em;
   font-size: min(2vw, 16px);
   min-height: 100vh;
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 0%;
-  }
-  25% {
-    background-position: 100% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  75% {
-    background-position: 0% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
 
 .page-container {
   max-width: 1200px;
