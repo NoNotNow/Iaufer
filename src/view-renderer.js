@@ -38,3 +38,44 @@ export function updateStageView() {
   targetElement.style.top = gameState.target.y + 'em';
   stage.appendChild(targetElement);
 }
+
+export function drawGrid() {
+  const canvas = document.getElementById('gridCanvas');
+  const stage = document.getElementById('stage');
+  
+  if (!canvas || !stage) return;
+  
+  const ctx = canvas.getContext('2d');
+  const rect = stage.getBoundingClientRect();
+  
+  // Set canvas size to match stage
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+  
+  // Calculate grid size in pixels (1em)
+  const fontSize = parseFloat(getComputedStyle(document.body).fontSize);
+  const gridSize = fontSize;
+  
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Set line style
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+  ctx.lineWidth = 1;
+  
+  // Draw vertical lines
+  for (let x = gridSize; x < canvas.width; x += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+  
+  // Draw horizontal lines
+  for (let y = gridSize; y < canvas.height; y += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+}
