@@ -14,22 +14,75 @@
           <canvas id="gridCanvas"></canvas>
           <div id="avatar" class="avatar">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <!-- Spaceship main body -->
-              <ellipse class="spaceship-body" cx="50" cy="50" rx="15" ry="25" fill="#e5e7eb" stroke="#6b7280" stroke-width="2"/>
-              <!-- Cockpit window -->
-              <ellipse cx="50" cy="35" rx="8" ry="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2" opacity="0.8"/>
+              <!-- Main hull -->
+              <ellipse class="spaceship-body" cx="50" cy="50" rx="20" ry="35" fill="url(#hullGradient)" stroke="#1e293b" stroke-width="1.5"/>
+              
+              <!-- Cockpit dome -->
+              <ellipse cx="50" cy="30" rx="12" ry="18" fill="url(#cockpitGradient)" stroke="#0ea5e9" stroke-width="1.5" opacity="0.9"/>
+              
+              <!-- Engine core -->
+              <rect x="42" y="75" width="16" height="12" rx="2" fill="url(#engineGradient)" stroke="#0f172a" stroke-width="1"/>
+              
               <!-- Engine flames -->
-              <ellipse cx="50" cy="78" rx="6" ry="8" fill="#f59e0b" opacity="0.9"/>
-              <ellipse cx="50" cy="82" rx="4" ry="6" fill="#ef4444" opacity="0.8"/>
-              <ellipse cx="50" cy="85" rx="2" ry="4" fill="#fbbf24" opacity="0.7"/>
-              <!-- Side fins -->
-              <polygon points="35,45 25,55 35,65" fill="#9ca3af" stroke="#6b7280" stroke-width="1"/>
-              <polygon points="65,45 75,55 65,65" fill="#9ca3af" stroke="#6b7280" stroke-width="1"/>
-              <!-- Nose cone -->
-              <polygon points="50,15 42,30 58,30" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
-              <!-- Details -->
-              <circle cx="50" cy="50" r="3" fill="#6b7280"/>
-              <circle cx="50" cy="60" r="2" fill="#6b7280"/>
+              <ellipse cx="50" cy="90" rx="8" ry="10" fill="#f59e0b" opacity="0.9">
+                <animate attributeName="ry" values="10;14;10" dur="0.3s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="50" cy="93" rx="6" ry="8" fill="#ef4444" opacity="0.8">
+                <animate attributeName="ry" values="8;12;8" dur="0.4s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="50" cy="96" rx="4" ry="6" fill="#fbbf24" opacity="0.7">
+                <animate attributeName="ry" values="6;10;6" dur="0.5s" repeatCount="indefinite"/>
+              </ellipse>
+              
+              <!-- Wing assemblies -->
+              <polygon points="30,40 15,50 20,60 35,55" fill="url(#wingGradient)" stroke="#1e293b" stroke-width="1"/>
+              <polygon points="70,40 85,50 80,60 65,55" fill="url(#wingGradient)" stroke="#1e293b" stroke-width="1"/>
+              
+              <!-- Wing tips with lights -->
+              <circle cx="17" cy="55" r="2" fill="#06b6d4" opacity="0.8">
+                <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="83" cy="55" r="2" fill="#06b6d4" opacity="0.8">
+                <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1s" repeatCount="indefinite"/>
+              </circle>
+              
+              <!-- Nose section -->
+              <polygon points="50,10 38,25 62,25" fill="url(#noseGradient)" stroke="#1e293b" stroke-width="1.5"/>
+              
+              <!-- Hull details -->
+              <rect x="45" y="45" width="10" height="3" rx="1" fill="#64748b" opacity="0.7"/>
+              <rect x="45" y="52" width="10" height="3" rx="1" fill="#64748b" opacity="0.7"/>
+              <rect x="45" y="59" width="10" height="3" rx="1" fill="#64748b" opacity="0.7"/>
+              
+              <!-- Sensor array -->
+              <circle cx="50" cy="35" r="4" fill="#0ea5e9" opacity="0.6">
+                <animate attributeName="r" values="4;5;4" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              
+              <!-- Gradients -->
+              <defs>
+                <linearGradient id="hullGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#e2e8f0;stop-opacity:1" />
+                  <stop offset="50%" style="stop-color:#94a3b8;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#475569;stop-opacity:1" />
+                </linearGradient>
+                <radialGradient id="cockpitGradient" cx="50%" cy="30%" r="70%">
+                  <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:0.9" />
+                  <stop offset="100%" style="stop-color:#0369a1;stop-opacity:0.7" />
+                </radialGradient>
+                <linearGradient id="engineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#64748b;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="wingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#cbd5e1;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#64748b;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="noseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#f1f5f9;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#94a3b8;stop-opacity:1" />
+                </linearGradient>
+              </defs>
             </svg>
           </div>
         </div>
