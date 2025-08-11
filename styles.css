@@ -14,8 +14,8 @@ body{
 }
 .displays {
   position:absolute;
-  right:0;
-  top:0;
+  right:2em;
+  top:5em;
 }
 .timer{
   font-size:3em;
