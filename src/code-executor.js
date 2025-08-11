@@ -169,6 +169,13 @@ export function stop() {
   isRunning = false;
   stopTimer();
   stopTimer();
+  
+  // Remove loop-active class when stopping
+  const stage = document.getElementById('stage');
+  if (stage) {
+    stage.classList.remove('loop-active');
+  }
+  
   // Clear error messages when stopping
   const errorMessage = document.getElementById('errorMessage');
   errorMessage.textContent = '';
