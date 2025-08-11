@@ -71,6 +71,14 @@ function handleGridClick(event) {
   
   // Update the stage view to reflect changes
   updateStageView();
+  
+  // Copy obstacle map to clipboard as JSON
+  const obstacleJson = JSON.stringify(gameState.obstacles);
+  navigator.clipboard.writeText(obstacleJson).then(() => {
+    console.log('Obstacle map copied to clipboard:', obstacleJson);
+  }).catch(err => {
+    console.error('Failed to copy to clipboard:', err);
+  });
 }
 export function setupEventListeners() {
   // Set up button event listeners
