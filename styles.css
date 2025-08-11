@@ -5,17 +5,6 @@ body{
   font-size: min(2vw, 16px);
 }
 
-.stage {
-  position: relative;
-  background: linear-gradient(135deg, #3b82f6, #1e40af);
-  transition-duration: 60ms;
-  border: 0.125em solid black;
-  border: 0.125em solid black;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
 .page-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -84,6 +73,15 @@ body{
 .instructions pre code {
   background-color: transparent;
   padding: 0;
+}
+
+.stage {
+  position: relative;
+  background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
+  transition-duration: 60ms;
+  border: 0.125em solid black;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .displays {
