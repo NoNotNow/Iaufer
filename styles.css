@@ -328,6 +328,25 @@ button:hover {
   background-color: #c82333;
 }
 
+.edit-mode {
+  background-color: #6c757d;
+  color: white;
+  margin-top: 1em;
+  width: 100%;
+}
+
+.edit-mode:hover {
+  background-color: #5a6268;
+}
+
+.edit-mode.active {
+  background-color: #28a745;
+}
+
+.edit-mode.active:hover {
+  background-color: #1e7e34;
+}
+
 @keyframes shake {
   0% {
     transform: translate(0, 0);

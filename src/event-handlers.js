@@ -72,6 +72,20 @@ function handleGridClick(event) {
   // Update the stage view to reflect changes
   updateStageView();
 }
+
+function toggleEditMode() {
+  editModeEnabled = !editModeEnabled;
+  const button = document.getElementById('editModeButton');
+  
+  if (editModeEnabled) {
+    button.textContent = 'Edit Mode: ON';
+    button.classList.add('active');
+  } else {
+    button.textContent = 'Edit Mode: OFF';
+    button.classList.remove('active');
+  }
+}
+
 export function setupEventListeners() {
   // Set up button event listeners
   document.getElementById("goButton").addEventListener("pointerdown", go);
