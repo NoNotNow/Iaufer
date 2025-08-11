@@ -6,26 +6,6 @@ import { resetPosition } from './game-state.js';
 import { updateView, updateStageView } from './view-renderer.js';
 import { gameState } from './game-state.js';
 
-// Edit mode state
-let isEditMode = false;
-
-function toggleEditMode() {
-  isEditMode = !isEditMode;
-  
-  const button = document.getElementById('editModeButton');
-  const canvas = document.getElementById('gridCanvas');
-  
-  if (isEditMode) {
-    button.textContent = 'Edit Mode: ON';
-    button.classList.add('active');
-    if (canvas) canvas.style.pointerEvents = 'auto';
-  } else {
-    button.textContent = 'Edit Mode: OFF';
-    button.classList.remove('active');
-    if (canvas) canvas.style.pointerEvents = 'none';
-  }
-}
-
 function handleReset() {
   resetPosition();
   updateView();
@@ -54,6 +34,9 @@ function handleClear() {
 }
 
 function handleGridClick(event) {
+  // Only handle clicks when edit mode is active
+  if (!isEditMode) return;
+  
   const canvas = document.getElementById('gridCanvas');
   const stage = document.getElementById('stage');
   

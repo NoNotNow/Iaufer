@@ -101,7 +101,4 @@ export function drawGrid() {
   }
   
   console.log('Drew', lineCount, 'grid lines');
-  
-  // Add click event listener to canvas for grid interaction
-  canvas.style.pointerEvents = 'auto';
 }
