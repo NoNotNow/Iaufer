@@ -296,7 +296,6 @@ body{
   border-radius: 3px;
   transition: background-color 0.2s;
   color: inherit;
-  margin-left: auto;
 }
 
 .loop-control:hover {
