@@ -139,7 +139,6 @@ export async function start() {
     
     console.log("Continuous execution completed");
     stopTimer();
-    resetTimer();
   } catch (error) {
     if (error.message === "Execution stopped") {
       console.log("Program stopped by user.");
