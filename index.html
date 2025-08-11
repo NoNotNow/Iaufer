@@ -14,15 +14,19 @@
           <canvas id="gridCanvas"></canvas>
           <div id="avatar" class="avatar">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <!-- Main spaceship body -->
-              <path class="spaceship-body" d="M50 10 L70 80 L50 70 L30 80 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
-              <!-- Wings -->
-              <path d="M30 60 L15 75 L25 80 L35 70 Z" fill="#6366f1" stroke="#4338ca" stroke-width="1"/>
-              <path d="M70 60 L85 75 L75 80 L65 70 Z" fill="#6366f1" stroke="#4338ca" stroke-width="1"/>
-              <!-- Cockpit -->
-              <circle cx="50" cy="35" r="8" fill="#06b6d4" stroke="#0891b2" stroke-width="1"/>
-              <!-- Engine flames (when moving) -->
-              <path class="engine-flame" d="M45 80 L50 95 L55 80" fill="#f59e0b" opacity="0.8"/>
+              <!-- Runner body -->
+              <ellipse class="runner-body" cx="50" cy="45" rx="12" ry="18" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+              <!-- Head -->
+              <circle cx="50" cy="20" r="10" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+              <!-- Arms -->
+              <line x1="38" y1="35" x2="30" y2="45" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+              <line x1="62" y1="35" x2="70" y2="45" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+              <!-- Legs -->
+              <line x1="45" y1="60" x2="40" y2="80" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+              <line x1="55" y1="60" x2="60" y2="80" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+              <!-- Feet -->
+              <ellipse cx="38" cy="82" rx="6" ry="3" fill="#1f2937"/>
+              <ellipse cx="62" cy="82" rx="6" ry="3" fill="#1f2937"/>
             </svg>
           </div>
         </div>
