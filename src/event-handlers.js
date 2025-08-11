@@ -1,12 +1,20 @@
-// Event handling and user interactions
-import { go, left, right } from './movement.js';
-import { start, stop } from './code-executor.js';
+// Main application entry point
+import { updateStageView, updateView } from './view-renderer.js';
+import { setupEventListeners } from './event-handlers.js';
+import { loadCode } from './save-load.js';
 
-export function setupEventListeners() {
-  // Add event listeners to buttons
-  document.getElementById("goButton").addEventListener("pointerdown", () => go());
-  document.getElementById("leftButton").addEventListener("pointerdown", () => left());
-  document.getElementById("rightButton").addEventListener("pointerdown", () => right());
-  document.getElementById("startButton").addEventListener("pointerdown", start);
-  document.getElementById("stopButton").addEventListener("pointerdown", stop);
+function main() {
+  console.log("Main function called");
+  setupEventListeners();
+  console.log("Event listeners set up");
+  updateStageView();
+  console.log("Stage view updated");
+  updateView();
+  console.log("View updated");
+  loadCode();
+  console.log("Code loaded");
 }
+
+// Wait for DOM to be fully loaded before initializing
+document.addEventListener("DOMContentLoaded", main);
+  document.getElementById("saveButton").addEventListener("pointerdown", saveCode);

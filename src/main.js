@@ -4,10 +4,15 @@ import { setupEventListeners } from './event-handlers.js';
 import { loadCode } from './save-load.js';
 
 function main() {
+  console.log("Main function called");
   setupEventListeners();
+  console.log("Event listeners set up");
   updateStageView();
+  console.log("Stage view updated");
   updateView();
+  console.log("View updated");
   loadCode();
+  console.log("Code loaded");
 }
 
 // Wait for DOM to be fully loaded before initializing
