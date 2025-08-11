@@ -23,6 +23,7 @@ body{
   transition-duration: 60ms;
   border: 2px solid black;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .displays {
