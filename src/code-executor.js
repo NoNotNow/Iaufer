@@ -83,18 +83,22 @@ function parseUserCode(code) {
   const transformedCode = transformCode(code);
   console.log("Transformed code:", transformedCode);
   
-  // Create an async function from the transformed code
-  const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
-  const userFunction = new AsyncFunction('go', 'left', 'right', 'free', 'random', `
-    // User's transformed code with movement functions available as parameters
-    ${transformedCode}
-  `);
-  
-  return userFunction;
+  try {
+    // Create an async function from the transformed code
+    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+    const userFunction = new AsyncFunction('go', 'left', 'right', 'free', 'random', `
+      // User's transformed code with movement functions available as parameters
+      ${transformedCode}
+    `);
+    return userFunction;
+  } catch (error) {
+    throw new Error("Syntax error: " + error.message);
+  }
 }
 
 // Execute user function repeatedly until stopped
 async function executeUntilStopped(userFunction) {
+
   try {
     await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
     // Small delay at the end of each execution cycle
@@ -103,10 +107,11 @@ async function executeUntilStopped(userFunction) {
     if (error.message === "Execution stopped") {
       throw error; // Re-throw to be caught by start()
     } else {
-      // Re-throw with more context
-      throw new Error(error.message);
+      console.error("Runtime error:", error);
+      throw error;
     }
   }
+  
 }
 
 function showLineIndicator(lineNumber) {
@@ -121,31 +126,30 @@ export async function start() {
     return;
   }
 
-  // Clear any previous error messages
-  clearError();
-
   let textbox = document.getElementById("code");
   let code = textbox.value;
 
   try {
+    // Parse the user's code
+    const userFunction = parseUserCode(code);
+    
     isRunning = true;
     startTimer();
     console.log("Starting execution...");
     
-    // Parse and execute the user's code
-    const userFunction = parseUserCode(code);
+    // Execute user function repeatedly until stopped
     await executeUntilStopped(userFunction);
     
     console.log("Continuous execution completed");
   } catch (error) {
     if (error.message === "Execution stopped") {
       console.log("Program stopped by user.");
+      stopTimer();
     } else {
       console.error("Runtime error in user code:", error);
-      displayError("Runtime error: " + error.message);
+      stopTimer();
+      resetTimer();
     }
-    stopTimer();
-    resetTimer();
   } finally {
     isRunning = false;
   }
