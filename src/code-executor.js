@@ -160,6 +160,7 @@ export async function start() {
 export function stop() {
   isRunning = false;
   stopTimer();
+  stopTimer();
   // Clear error messages when stopping
   const errorMessage = document.getElementById('errorMessage');
   errorMessage.textContent = '';
