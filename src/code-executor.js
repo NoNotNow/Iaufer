@@ -138,12 +138,16 @@ export async function start() {
     await executeUntilStopped(userFunction);
     
     console.log("Continuous execution completed");
+    stopTimer();
+    resetTimer();
   } catch (error) {
     if (error.message === "Execution stopped") {
       console.log("Program stopped by user.");
     } else {
       console.error("Parse error:", error);
     }
+    stopTimer();
+    resetTimer();
   } finally {
     isRunning = false;
   }
