@@ -1,7 +1,7 @@
 body{
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
   background-size: 600% 600%;
-  animation: gradientFlow 20s ease infinite;
+  animation: gradientFlow 200s ease infinite;
   margin: 0;
   padding: 1em;
   font-size: min(2vw, 16px);
