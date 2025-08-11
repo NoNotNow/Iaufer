@@ -1,14 +1,20 @@
 body{
   background-color:silver;
+  margin: 0;
+  padding: 1em;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
 }
 
 .game-container {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: flex-start;
   gap: 1em;
+  margin-bottom: 2em;
 }
 
 .stage {
@@ -135,8 +141,7 @@ body{
 }
 
 .controls {
-  position: absolute;
-  bottom: 1em;
+  /* Remove absolute positioning */
 }
 
 .textarea-container {
