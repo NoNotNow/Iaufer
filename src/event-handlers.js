@@ -6,6 +6,23 @@ import { resetPosition } from './game-state.js';
 import { updateView, updateStageView } from './view-renderer.js';
 import { gameState } from './game-state.js';
 
+// Edit mode state
+let isEditMode = false;
+
+function toggleEditMode() {
+  isEditMode = !isEditMode;
+  const button = document.getElementById('editModeButton');
+  if (button) {
+    if (isEditMode) {
+      button.textContent = 'Edit Mode: ON';
+      button.classList.add('active');
+    } else {
+      button.textContent = 'Edit Mode: OFF';
+      button.classList.remove('active');
+    }
+  }
+}
+
 function handleReset() {
   resetPosition();
   updateView();
