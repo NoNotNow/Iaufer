@@ -19,6 +19,19 @@ function handleReset() {
   localStorage.removeItem('savedCode');
 }
 
+function handleClear() {
+  const codeTextarea = document.getElementById('code');
+  if (codeTextarea) {
+    codeTextarea.value = '';
+  }
+  
+  // Clear error message
+  const errorMessage = document.getElementById('errorMessage');
+  if (errorMessage) {
+    errorMessage.textContent = '';
+  }
+}
+
 export function setupEventListeners() {
   // Set up button event listeners
   document.getElementById("goButton").addEventListener("pointerdown", go);
@@ -28,4 +41,5 @@ export function setupEventListeners() {
   document.getElementById("startButton").addEventListener("pointerdown", start);
   document.getElementById("stopButton").addEventListener("pointerdown", stop);
   document.getElementById("saveButton").addEventListener("pointerdown", saveCode);
+  document.getElementById("clearButton").addEventListener("pointerdown", handleClear);
 }
