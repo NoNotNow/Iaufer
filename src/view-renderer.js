@@ -55,6 +55,9 @@ export function drawGrid() {
   
   console.log('Stage rect:', rect);
   
+  // Force a reflow to ensure we get accurate dimensions
+  stage.offsetHeight;
+  
   // Set high-resolution canvas size (2x for retina displays)
   const pixelRatio = window.devicePixelRatio || 1;
   canvas.width = rect.width * pixelRatio;
