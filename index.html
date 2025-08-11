@@ -19,25 +19,6 @@
         </div>
       </div>
       <div class="bottom-container">
-        <div class="instructions">
-          <h3>Anleitung</h3>
-          <h4>Befehle:</h4>
-          <ul>
-            <li><code>go()</code> - Bewege dich einen Schritt vorwärts</li>
-            <li><code>go(3)</code> - Bewege dich 3 Schritte vorwärts</li>
-            <li><code>left()</code> - Drehe dich nach links</li>
-            <li><code>right()</code> - Drehe dich nach rechts</li>
-            <li><code>free()</code> - Prüfe, ob der Weg frei ist (true/false)</li>
-            <li><code>random(6)</code> - Zufallszahl zwischen 1 und 6</li>
-          </ul>
-          <h4>Ziel:</h4>
-          <p>Erreiche das grüne Ziel, ohne gegen Hindernisse oder Wände zu stoßen!</p>
-          <h4>Beispiel:</h4>
-          <pre><code>while (!free()) {
-  right();
-}
-go();</code></pre>
-        </div>
         <div class="controls">
           <div class="textarea-container">
             <textarea id="code" rows="10" class="text">go();</textarea>
@@ -66,6 +47,25 @@ go();</code></pre>
               SAVE
             </button>
           </div>
+        </div>
+        <div class="instructions">
+          <h3>Anleitung</h3>
+          <h4>Befehle:</h4>
+          <ul>
+            <li><code>go()</code> - Bewege dich einen Schritt vorwärts</li>
+            <li><code>go(3)</code> - Bewege dich 3 Schritte vorwärts</li>
+            <li><code>left()</code> - Drehe dich nach links</li>
+            <li><code>right()</code> - Drehe dich nach rechts</li>
+            <li><code>free()</code> - Prüfe, ob der Weg frei ist (true/false)</li>
+            <li><code>random(6)</code> - Zufallszahl zwischen 1 und 6</li>
+          </ul>
+          <h4>Ziel:</h4>
+          <p>Erreiche das grüne Ziel, ohne gegen Hindernisse oder Wände zu stoßen!</p>
+          <h4>Beispiel:</h4>
+          <pre><code>while (!free()) {
+  right();
+}
+go();</code></pre>
         </div>
       </div>
     </div>
