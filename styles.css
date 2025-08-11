@@ -242,17 +242,54 @@ body{
   color: #333;
 }
 
-.code {
-  height: 4em;
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 1em;
+  align-items: center;
 }
 
 button {
-  float: left;
-  margin-right: 2em;
-  margin-top: 1em;
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
 }
-.start {
-  clear: both;
+
+button:hover {
+  background-color: #e8e8e8;
+}
+
+.start, .stop {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.start:hover, .stop:hover {
+  background-color: #0056b3;
+}
+
+.save {
+  background-color: #28a745;
+  color: white;
+}
+
+.save:hover {
+  background-color: #1e7e34;
+}
+
+.reset {
+  background-color: #dc3545;
+  color: white;
+}
+
+.reset:hover {
+  background-color: #c82333;
 }
 
 @keyframes shake {
