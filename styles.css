@@ -74,16 +74,21 @@ body{
   background-color: transparent;
   padding: 0;
 }
-
-.stage {
-  position: relative;
-  background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
   transition-duration: 60ms;
   border: 0.125em solid black;
   box-sizing: border-box;
   flex-shrink: 0;
 }
 
+.stage-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
 .displays {
   position: relative;
   flex-shrink: 0;
