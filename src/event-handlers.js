@@ -52,7 +52,7 @@ function handleGridClick(event) {
   const gridY = Math.floor(y / gridSize);
   
   // Check if click is within valid grid bounds
-  if (gridX < 0 || gridX >= gameState.stageSize.x || gridY < 0 || gridY >= gameState.stageSize.y) {
+  if (gridX < 0 || gridX > gameState.stageSize.x || gridY < 0 || gridY > gameState.stageSize.y) {
     return;
   }
   
