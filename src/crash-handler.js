@@ -57,7 +57,6 @@ export function handleTargetReached() {
     avatar.classList.remove("target-reached");
     stage.classList.remove("target-reached");
     resetPosition();
-    resetTimer();
     updateView();
   }, 2000);
   
