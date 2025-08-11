@@ -73,13 +73,13 @@
             <li><code>go(3)</code> - Bewege dich 3 Schritte vorwärts</li>
             <li><code>left()</code> - Drehe dich nach links</li>
             <li><code>right()</code> - Drehe dich nach rechts</li>
-            <li><code>free()</code> - Prüfe, ob der Weg frei ist (true/false)</li>
+            <li><code>free()</code> - Anzahl freier Felder vor dem Avatar</li>
             <li><code>random(6)</code> - Zufallszahl zwischen 1 und 6</li>
           </ul>
           <h4>Ziel:</h4>
           <p>Erreiche das grüne Ziel, ohne gegen Hindernisse oder Wände zu stoßen!</p>
           <h4>Beispiel:</h4>
-          <pre><code>while (!free()) {
+          <pre><code>while (free() === 0) {
   right();
 }
 go();</code></pre>
