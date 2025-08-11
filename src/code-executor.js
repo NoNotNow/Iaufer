@@ -94,7 +94,7 @@ function parseUserCode(code) {
 
 // Execute user function repeatedly until stopped
 async function executeUntilStopped(userFunction) {
-  while (isRunning) {
+
     try {
       await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
       // Small delay at the end of each execution cycle
@@ -107,7 +107,7 @@ async function executeUntilStopped(userFunction) {
         throw error;
       }
     }
-  }
+  
 }
 
 function showLineIndicator(lineNumber) {
