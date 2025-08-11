@@ -2,20 +2,27 @@ body{
   background-color:silver;
 }
 
-.stage {
+.game-container {
+  position: absolute;
   top: 0;
   left: 0;
-  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.stage {
+  position: relative;
   background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
   z-index: -1;
   transition-duration: 60ms;
   border: 2px solid black;
   box-sizing: border-box;
 }
+
 .displays {
-  position: absolute;
-  left: calc(100% + 1em);
-  top: 0;
+  position: relative;
+  flex-shrink: 0;
 }
 .timer{
   font-size:3em;
