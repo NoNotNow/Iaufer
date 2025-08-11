@@ -58,9 +58,9 @@ export function checkTargetReached() {
   const avatarBottom = gameState.position.y + 2;
   
   const targetLeft = gameState.target.x;
-  const targetRight = gameState.target.x + 2;
+  const targetRight = gameState.target.x + 3;
   const targetTop = gameState.target.y;
-  const targetBottom = gameState.target.y + 2;
+  const targetBottom = gameState.target.y + 3;
   
   // Check for overlap in both x and y directions
   return !(avatarRight <= targetLeft || 
