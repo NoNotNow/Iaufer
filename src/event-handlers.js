@@ -51,11 +51,8 @@ function handleClear() {
 }
 
 function handleGridClick(event) {
-  console.log('Grid clicked, edit mode:', isEditMode);
-  
   // Only handle clicks when edit mode is active
   if (!isEditMode) {
-    console.log('Edit mode is off, ignoring click');
     return;
   }
   
@@ -78,11 +75,8 @@ function handleGridClick(event) {
   
   // Check if click is within reasonable grid bounds (be generous)
   if (gridX < 0 || gridX > 25 || gridY < 0 || gridY > 25) {
-    console.log('Click outside bounds:', gridX, gridY);
     return;
   }
-  
-  console.log('Adding/removing obstacle at:', gridX, gridY);
   
   // Check if there's already an obstacle at this position
   const existingObstacleIndex = gameState.obstacles.findIndex(
@@ -92,16 +86,13 @@ function handleGridClick(event) {
   if (existingObstacleIndex !== -1) {
     // Remove existing obstacle
     gameState.obstacles.splice(existingObstacleIndex, 1);
-    console.log('Removed obstacle');
   } else {
     // Add new obstacle
     gameState.obstacles.push({ x: gridX, y: gridY });
-    console.log('Added obstacle');
   }
   
   // Update the stage view to reflect changes
   updateStageView();
-  console.log('Updated stage view');
 }
 export function setupEventListeners() {
   // Set up button event listeners
