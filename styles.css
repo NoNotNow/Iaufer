@@ -159,10 +159,19 @@ body{
 .avatar.wall-collision svg .spaceship-body {
   fill: #ef4444;
 }
+.avatar.wall-collision svg .runner-body {
+  fill: #ef4444;
+}
 .avatar.obstacle-collision svg .spaceship-body {
   fill: #a855f7;
 }
+.avatar.obstacle-collision svg .runner-body {
+  fill: #a855f7;
+}
 .avatar.target-reached svg .spaceship-body {
+  fill: #fbbf24;
+}
+.avatar.target-reached svg .runner-body {
   fill: #fbbf24;
 }
 .stage.wall-collision {
