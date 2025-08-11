@@ -130,23 +130,26 @@ body{
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 0;
-  border-left: 1em solid transparent;
-  border-right: 1em solid transparent;
-  border-bottom: 2em solid blue;
+  width: 2em;
+  height: 2em;
   transform-origin: center;
   z-index: 3;
   transition: all 150ms ease-in-out;
 }
-.avatar.wall-collision {
-  border-bottom: 2em solid red;
+
+.avatar svg {
+  width: 100%;
+  height: 100%;
 }
-.avatar.obstacle-collision {
-  border-bottom: 2em solid purple;
+
+.avatar.wall-collision svg .spaceship-body {
+  fill: #ef4444;
 }
-.avatar.target-reached {
-  border-bottom: 2em solid gold;
+.avatar.obstacle-collision svg .spaceship-body {
+  fill: #a855f7;
+}
+.avatar.target-reached svg .spaceship-body {
+  fill: #fbbf24;
 }
 .stage.wall-collision {
   animation: shake 500ms infinite;
