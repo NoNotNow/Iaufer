@@ -14,18 +14,31 @@
           <canvas id="gridCanvas"></canvas>
           <div id="avatar" class="avatar">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <!-- Runner body (top-down view) -->
-              <ellipse class="runner-body" cx="50" cy="50" rx="15" ry="20" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+              <!-- Epic Runner (side view) -->
               <!-- Head -->
-              <circle cx="50" cy="35" r="8" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
-              <!-- Arms (extended to sides) -->
-              <ellipse cx="30" cy="45" rx="8" ry="4" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-              <ellipse cx="70" cy="45" rx="8" ry="4" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-              <!-- Legs (running position) -->
-              <ellipse cx="45" cy="65" rx="4" ry="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-              <ellipse cx="55" cy="65" rx="4" ry="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-              <!-- Direction indicator (arrow) -->
-              <polygon points="50,25 55,15 50,10 45,15" fill="#f59e0b" stroke="#d97706" stroke-width="1"/>
+              <circle class="runner-body" cx="50" cy="25" r="12" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+              <!-- Hair/helmet -->
+              <path d="M 38 20 Q 50 10 62 20 Q 58 15 50 15 Q 42 15 38 20" fill="#8b4513" stroke="#654321" stroke-width="1"/>
+              <!-- Body (torso) -->
+              <rect class="runner-body" x="42" y="35" width="16" height="25" rx="3" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+              <!-- Cape -->
+              <path d="M 58 38 Q 75 45 72 65 Q 68 70 65 68 L 58 55" fill="#7c3aed" stroke="#6d28d9" stroke-width="1"/>
+              <!-- Front arm (pumping forward) -->
+              <ellipse cx="58" cy="42" rx="3" ry="12" fill="#fbbf24" stroke="#f59e0b" stroke-width="1" transform="rotate(20 58 42)"/>
+              <!-- Back arm (pumping backward) -->
+              <ellipse cx="42" cy="45" rx="3" ry="10" fill="#fbbf24" stroke="#f59e0b" stroke-width="1" transform="rotate(-30 42 45)"/>
+              <!-- Front leg (lifted) -->
+              <ellipse cx="52" cy="68" rx="4" ry="15" fill="#1e40af" stroke="#1e3a8a" stroke-width="2" transform="rotate(15 52 68)"/>
+              <!-- Back leg (pushing off) -->
+              <ellipse cx="48" cy="72" rx="4" ry="12" fill="#1e40af" stroke="#1e3a8a" stroke-width="2" transform="rotate(-10 48 72)"/>
+              <!-- Front foot -->
+              <ellipse cx="56" cy="80" rx="6" ry="3" fill="#374151" stroke="#1f2937" stroke-width="1"/>
+              <!-- Back foot -->
+              <ellipse cx="44" cy="82" rx="6" ry="3" fill="#374151" stroke="#1f2937" stroke-width="1"/>
+              <!-- Speed lines -->
+              <line x1="25" y1="30" x2="35" y2="32" stroke="#94a3b8" stroke-width="2" opacity="0.7"/>
+              <line x1="20" y1="45" x2="32" y2="47" stroke="#94a3b8" stroke-width="2" opacity="0.7"/>
+              <line x1="22" y1="60" x2="34" y2="62" stroke="#94a3b8" stroke-width="2" opacity="0.7"/>
             </svg>
           </div>
         </div>
