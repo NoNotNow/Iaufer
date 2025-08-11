@@ -34,6 +34,8 @@ export function updateStageView() {
   // Add target to the stage
   const targetElement = document.createElement('div');
   targetElement.className = 'target';
+  targetElement.style.width = '3em';
+  targetElement.style.height = '3em';
   targetElement.style.left = gameState.target.x + 'em';
   targetElement.style.top = gameState.target.y + 'em';
   stage.appendChild(targetElement);

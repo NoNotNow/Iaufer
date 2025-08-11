@@ -207,8 +207,8 @@ body{
 
 .target {
   position: absolute;
-  width: 2em;
-  height: 2em;
+  width: 3em;
+  height: 3em;
   background: #22c55e;
   border: 0.1875em solid #16a34a;
   border-radius: 50%;
