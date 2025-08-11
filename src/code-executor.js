@@ -1,5 +1,6 @@
 // Code execution and program control
 import { go, left, right, free } from './movement.js';
+import { startTimer } from './timer.js';
 
 // Random number generator function
 function random(x) {
@@ -130,6 +131,7 @@ export async function start() {
     const userFunction = parseUserCode(code);
     
     isRunning = true;
+    startTimer();
     console.log("Starting execution...");
     
     // Execute user function repeatedly until stopped
