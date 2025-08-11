@@ -14,7 +14,6 @@ body{
 .stage {
   position: relative;
   background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
-  z-index: -1;
   transition-duration: 60ms;
   border: 2px solid black;
   box-sizing: border-box;
@@ -45,6 +44,7 @@ body{
 }
 
 .avatar {
+  position: absolute;
   top: 0;
   left: 0;
   width: 0;
@@ -53,7 +53,6 @@ body{
   border-right: 1em solid transparent;
   border-bottom: 2em solid blue;
   transform-origin: center;
-  position: absolute;
   z-index: 3;
   transition: all 150ms ease-in-out;
 }
