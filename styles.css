@@ -19,14 +19,8 @@ body{
 
 .bottom-container {
   display: flex;
+  flex-direction: column;
   gap: 2em;
-  align-items: flex-start;
-}
-
-@media (max-width: 768px) {
-  .bottom-container {
-    flex-direction: column;
-  }
 }
 
 .instructions {
