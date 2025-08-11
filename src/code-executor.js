@@ -143,7 +143,7 @@ export async function start() {
       console.log("Program stopped by user.");
       stopTimer();
     } else {
-      console.error("Parse error:", error);
+      console.error("Runtime error in user code:", error);
       stopTimer();
       resetTimer();
     }
