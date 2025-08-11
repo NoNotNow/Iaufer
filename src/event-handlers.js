@@ -8,6 +8,15 @@ import { updateView } from './view-renderer.js';
 function handleReset() {
   resetPosition();
   updateView();
+  
+  // Clear the code textarea and reset to default
+  const codeTextarea = document.getElementById('codeTextarea');
+  if (codeTextarea) {
+    codeTextarea.value = 'go();';
+  }
+  
+  // Remove saved code from localStorage
+  localStorage.removeItem('savedCode');
 }
 
 export function setupEventListeners() {
