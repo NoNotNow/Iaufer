@@ -15,6 +15,8 @@ export const gameState = {
     { x: 6, y: 18 },
     { x: 10, y: 10 },
     { x: 3, y: 14 },
+    { x: 20, y: 10 },
+    { x: 19, y: 10 },
   ],
   target: { x: 18, y: 18 }
 };
