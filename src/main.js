@@ -1,5 +1,5 @@
 // Main application entry point
-import { updateStageView, updateView } from './view-renderer.js';
+import { updateStageView, updateView, drawGrid } from './view-renderer.js';
 import { setupEventListeners } from './event-handlers.js';
 import { loadCode } from './save-load.js';
 
