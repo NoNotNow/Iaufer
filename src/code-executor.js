@@ -96,18 +96,18 @@ function parseUserCode(code) {
 // Execute user function repeatedly until stopped
 async function executeUntilStopped(userFunction) {
 
-    try {
-      await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
-      // Small delay at the end of each execution cycle
-      await delay(100);
-    } catch (error) {
-      if (error.message === "Execution stopped") {
-        throw error; // Re-throw to be caught by start()
-      } else {
-        console.error("Runtime error:", error);
-        throw error;
-      }
+  try {
+    await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
+    // Small delay at the end of each execution cycle
+    await delay(100);
+  } catch (error) {
+    if (error.message === "Execution stopped") {
+      throw error; // Re-throw to be caught by start()
+    } else {
+      console.error("Runtime error:", error);
+      throw error;
     }
+  }
   
 }
 
@@ -144,7 +144,6 @@ export async function start() {
       stopTimer();
     } else {
       console.error("Runtime error in user code:", error);
-      displayError("Runtime error in user code: " + error.message);
       stopTimer();
       resetTimer();
     }
