@@ -43,7 +43,10 @@ function delay(ms = 300) {
 
 // Extensible delay function for movement commands
 async function movementDelay() {
-  await delay();
+  const loopCheckbox = document.getElementById('loopCheckbox');
+  const shouldLoop = loopCheckbox ? loopCheckbox.checked : true;
+  const delayTime = shouldLoop ? 10 : 300;
+  await delay(delayTime);
 }
 
 // Explicit wrapped functions
