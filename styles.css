@@ -74,14 +74,29 @@ body{
   background-color: transparent;
   padding: 0;
 }
-
-.stage {
-  position: relative;
-  background: linear-gradient(135deg, #ff9a56, #ff6b35, #f7931e);
   transition-duration: 60ms;
   border: 0.125em solid black;
   box-sizing: border-box;
   flex-shrink: 0;
+}
+
+.grid-line {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.grid-line-vertical {
+  width: 0.0625em;
+  height: 100%;
+  top: 0;
+}
+
+.grid-line-horizontal {
+  height: 0.0625em;
+  width: 100%;
+  left: 0;
 }
 
 .displays {
