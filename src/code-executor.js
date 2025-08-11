@@ -123,30 +123,31 @@ export async function start() {
     return;
   }
 
+  // Clear any previous error messages
+  clearError();
+
   let textbox = document.getElementById("code");
   let code = textbox.value;
 
   try {
-    // Parse the user's code
-    const userFunction = parseUserCode(code);
-    
     isRunning = true;
     startTimer();
     console.log("Starting execution...");
     
-    // Execute user function repeatedly until stopped
+    // Parse and execute the user's code
+    const userFunction = parseUserCode(code);
     await executeUntilStopped(userFunction);
     
     console.log("Continuous execution completed");
   } catch (error) {
     if (error.message === "Execution stopped") {
       console.log("Program stopped by user.");
-      stopTimer();
     } else {
       console.error("Runtime error in user code:", error);
-      stopTimer();
-      resetTimer();
+      displayError("Runtime error: " + error.message);
     }
+    stopTimer();
+    resetTimer();
   } finally {
     isRunning = false;
   }
