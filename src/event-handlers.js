@@ -3,7 +3,8 @@ import { go, left, right } from './movement.js';
 import { start, stop } from './code-executor.js';
 import { saveCode } from './save-load.js';
 import { resetPosition } from './game-state.js';
-import { updateView } from './view-renderer.js';
+import { updateView, updateStageView } from './view-renderer.js';
+import { gameState } from './game-state.js';
 
 function handleReset() {
   resetPosition();
@@ -32,6 +33,45 @@ function handleClear() {
   }
 }
 
+function handleGridClick(event) {
+  const canvas = document.getElementById('gridCanvas');
+  const stage = document.getElementById('stage');
+  
+  if (!canvas || !stage) return;
+  
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  
+  // Calculate grid size in pixels (1em)
+  const fontSize = parseFloat(getComputedStyle(document.body).fontSize);
+  const gridSize = fontSize;
+  
+  // Convert pixel coordinates to grid coordinates
+  const gridX = Math.floor(x / gridSize);
+  const gridY = Math.floor(y / gridSize);
+  
+  // Check if click is within valid grid bounds
+  if (gridX < 0 || gridX >= gameState.stageSize.x || gridY < 0 || gridY >= gameState.stageSize.y) {
+    return;
+  }
+  
+  // Check if there's already an obstacle at this position
+  const existingObstacleIndex = gameState.obstacles.findIndex(
+    obstacle => obstacle.x === gridX && obstacle.y === gridY
+  );
+  
+  if (existingObstacleIndex !== -1) {
+    // Remove existing obstacle
+    gameState.obstacles.splice(existingObstacleIndex, 1);
+  } else {
+    // Add new obstacle
+    gameState.obstacles.push({ x: gridX, y: gridY });
+  }
+  
+  // Update the stage view to reflect changes
+  updateStageView();
+}
 export function setupEventListeners() {
   // Set up button event listeners
   document.getElementById("goButton").addEventListener("pointerdown", go);
@@ -42,4 +82,10 @@ export function setupEventListeners() {
   document.getElementById("stopButton").addEventListener("pointerdown", stop);
   document.getElementById("saveButton").addEventListener("pointerdown", saveCode);
   document.getElementById("clearButton").addEventListener("pointerdown", handleClear);
+  
+  // Set up grid click handler
+  const canvas = document.getElementById('gridCanvas');
+  if (canvas) {
+    canvas.addEventListener('click', handleGridClick);
+  }
 }
