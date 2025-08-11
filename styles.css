@@ -12,6 +12,14 @@ body{
   border: 2px solid black;
   box-sizing: border-box;
 }
+.displays {
+  position:absolute;
+  right:0;
+  top:0;
+}
+.timer{
+  font-size:3em;
+}
 
 .avatar {
   top: 0;
