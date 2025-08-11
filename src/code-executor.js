@@ -95,7 +95,6 @@ function parseUserCode(code) {
 
 // Execute user function repeatedly until stopped
 async function executeUntilStopped(userFunction) {
-
   try {
     await userFunction(wrappedGo, wrappedLeft, wrappedRight, free, random);
     // Small delay at the end of each execution cycle
@@ -104,11 +103,10 @@ async function executeUntilStopped(userFunction) {
     if (error.message === "Execution stopped") {
       throw error; // Re-throw to be caught by start()
     } else {
-      console.error("Runtime error:", error);
-      throw error;
+      // Re-throw with more context
+      throw new Error(error.message);
     }
   }
-  
 }
 
 function showLineIndicator(lineNumber) {
