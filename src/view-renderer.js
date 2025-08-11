@@ -14,6 +14,10 @@ export function updateStageView() {
   stage.style.width = gameState.stageSize.x + 2 + "em";
   stage.style.height = gameState.stageSize.y + 2 + "em";
   
+  // Clear existing grid
+  const existingGrid = stage.querySelectorAll('.grid-line');
+  existingGrid.forEach(line => line.remove());
+  
   // Clear existing obstacles
   const existingObstacles = stage.querySelectorAll('.obstacle');
   existingObstacles.forEach(obstacle => obstacle.remove());
@@ -21,6 +25,9 @@ export function updateStageView() {
   // Clear existing target
   const existingTarget = stage.querySelector('.target');
   if (existingTarget) existingTarget.remove();
+  
+  // Create grid lines
+  createGridLines(stage);
   
   // Add obstacles to the stage
   gameState.obstacles.forEach(obstacle => {
@@ -37,4 +44,22 @@ export function updateStageView() {
   targetElement.style.left = gameState.target.x + 'em';
   targetElement.style.top = gameState.target.y + 'em';
   stage.appendChild(targetElement);
+}
+
+function createGridLines(stage) {
+  // Create vertical grid lines
+  for (let x = 0; x <= gameState.stageSize.x + 2; x++) {
+    const line = document.createElement('div');
+    line.className = 'grid-line grid-line-vertical';
+    line.style.left = x + 'em';
+    stage.appendChild(line);
+  }
+  
+  // Create horizontal grid lines
+  for (let y = 0; y <= gameState.stageSize.y + 2; y++) {
+    const line = document.createElement('div');
+    line.className = 'grid-line grid-line-horizontal';
+    line.style.top = y + 'em';
+    stage.appendChild(line);
+  }
 }
