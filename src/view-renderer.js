@@ -37,7 +37,4 @@ export function updateStageView() {
   targetElement.style.left = gameState.target.x + 'em';
   targetElement.style.top = gameState.target.y + 'em';
   stage.appendChild(targetElement);
-  
-  // Draw grid after stage is updated
-  setTimeout(drawGrid, 0);
 }
