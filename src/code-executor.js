@@ -45,7 +45,7 @@ function delay(ms = 300) {
 async function movementDelay() {
   const loopCheckbox = document.getElementById('loopCheckbox');
   const shouldLoop = loopCheckbox ? loopCheckbox.checked : true;
-  const delayTime = shouldLoop ? 30 : 300;
+  const delayTime = shouldLoop ? 60 : 300;
   await delay(delayTime);
 }
 
