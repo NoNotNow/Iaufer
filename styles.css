@@ -5,6 +5,16 @@ body{
   font-size: min(2vw, 16px);
 }
 
+.stage {
+  position: relative;
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  transition-duration: 60ms;
+  border: 0.125em solid black;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
 .page-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -73,50 +83,6 @@ body{
 .instructions pre code {
   background-color: transparent;
   padding: 0;
-}
-  transition-duration: 60ms;
-  border: 0.125em solid black;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.grid-line {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.grid-line-vertical {
-  width: 0.0625em;
-  height: 100%;
-  top: 0;
-}
-
-.grid-line-horizontal {
-  height: 0.0625em;
-  width: 100%;
-  left: 0;
-}
-
-.grid-line {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.grid-line-vertical {
-  width: 0.0625em;
-  height: 100%;
-  top: 0;
-}
-
-.grid-line-horizontal {
-  height: 0.0625em;
-  width: 100%;
-  left: 0;
 }
 
 .displays {
