@@ -53,11 +53,19 @@ export function drawGrid() {
   
   console.log('Stage rect:', rect);
   
-  // Set canvas size to match stage
-  canvas.width = rect.width;
-  canvas.height = rect.height;
+  // Set high-resolution canvas size (2x for retina displays)
+  const pixelRatio = window.devicePixelRatio || 1;
+  canvas.width = rect.width * pixelRatio;
+  canvas.height = rect.height * pixelRatio;
   
-  console.log('Canvas size set to:', canvas.width, 'x', canvas.height);
+  // Scale the canvas back down using CSS
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+  
+  // Scale the drawing context to match the device pixel ratio
+  ctx.scale(pixelRatio, pixelRatio);
+  
+  console.log('Canvas size set to:', canvas.width, 'x', canvas.height, 'with pixel ratio:', pixelRatio);
   
   // Calculate grid size in pixels (1em)
   const fontSize = parseFloat(getComputedStyle(document.body).fontSize);
@@ -66,28 +74,28 @@ export function drawGrid() {
   console.log('Grid size (1em):', gridSize, 'px');
   
   // Clear canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, rect.width, rect.height);
   
   // Set line style
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+  ctx.lineWidth = 0.5;
   
   let lineCount = 0;
   
   // Draw vertical lines
-  for (let x = gridSize; x < canvas.width; x += gridSize) {
+  for (let x = gridSize; x < rect.width; x += gridSize) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
+    ctx.lineTo(x, rect.height);
     ctx.stroke();
     lineCount++;
   }
   
   // Draw horizontal lines
-  for (let y = gridSize; y < canvas.height; y += gridSize) {
+  for (let y = gridSize; y < rect.height; y += gridSize) {
     ctx.beginPath();
     ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
+    ctx.lineTo(rect.width, y);
     ctx.stroke();
     lineCount++;
   }
