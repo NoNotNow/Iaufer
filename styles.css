@@ -288,17 +288,18 @@ body{
   display: flex;
   align-items: center;
   gap: 0.3em;
-  font-size: 0.9em;
+  font-size: 0.8em;
   cursor: pointer;
-  padding: 0.5em;
-  border: 0.0625em solid #ccc;
-  background-color: #f8f8f8;
-  border-radius: 4px;
+  padding: 0.3em 0.5em;
+  border: 0.0625em solid #ddd;
+  background-color: #fafafa;
+  border-radius: 3px;
   transition: background-color 0.2s;
+  color: #666;
 }
 
 .loop-control:hover {
-  background-color: #e8e8e8;
+  background-color: #f0f0f0;
 }
 
 .loop-control input[type="checkbox"] {
