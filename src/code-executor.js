@@ -1,6 +1,6 @@
 // Code execution and program control
 import { go, left, right, free } from './movement.js';
-import { startTimer, stopTimer, resetTimer } from './timer.js';
+import { startTimer, stopTimer, resetTimer, isTimerStopped } from './timer.js';
 
 // Random number generator function
 function random(x) {
@@ -43,6 +43,9 @@ function delay(ms = 300) {
 
 // Extensible delay function for movement commands
 async function movementDelay() {
+  if (isTimerStopped()) {
+    throw new Error("Execution stopped");
+  }
   await delay();
 }
 
