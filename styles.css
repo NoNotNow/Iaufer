@@ -15,7 +15,11 @@ body{
   .stage {
     width: 100% !important;
     max-width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 1 !important;
+    height: 80vh !important;
+    max-height: 80vh;
+    width: 80vh !important;
+    max-width: 80vh;
   }
   
   .displays {
