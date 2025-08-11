@@ -154,6 +154,7 @@ export async function start() {
 
 export function stop() {
   isRunning = false;
+  stopTimer();
   if (currentDelay) {
     currentDelay.cancel();
   }
