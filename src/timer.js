@@ -1,11 +1,9 @@
 // Timer functionality
 let startTime = null;
 let timerInterval = null;
-let timerStopped = false;
 
 export function startTimer() {
   startTime = Date.now();
-  timerStopped = false;
   updateTimerDisplay();
   
   timerInterval = setInterval(() => {
@@ -14,7 +12,6 @@ export function startTimer() {
 }
 
 export function stopTimer() {
-  timerStopped = true;
   if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
@@ -24,15 +21,10 @@ export function stopTimer() {
 export function resetTimer() {
   stopTimer();
   startTime = null;
-  timerStopped = false;
   const timerElement = document.getElementById('timer');
   if (timerElement) {
     timerElement.textContent = '0.00';
   }
-}
-
-export function isTimerStopped() {
-  return timerStopped;
 }
 
 function updateTimerDisplay() {
