@@ -2,6 +2,7 @@ body{
   background-color:silver;
   margin: 0;
   padding: 1em;
+  font-size: min(2vw, 16px);
 }
 
 .page-container {
