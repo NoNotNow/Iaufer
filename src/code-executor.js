@@ -155,6 +155,9 @@ export async function start() {
 export function stop() {
   isRunning = false;
   stopTimer();
+  // Clear error messages when stopping
+  const errorMessage = document.getElementById('errorMessage');
+  errorMessage.textContent = '';
   if (currentDelay) {
     currentDelay.cancel();
   }
