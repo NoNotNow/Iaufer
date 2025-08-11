@@ -205,11 +205,20 @@ body{
 .textarea-container {
   position: relative;
   display: inline-block;
+  width: 100%;
+}
+
+.text {
+  resize: both;
+  min-width: 300px;
+  min-height: 150px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .clear-button {
   position: absolute;
-  bottom: 5px;
+  top: 5px;
   right: 5px;
   width: 25px;
   height: 25px;
