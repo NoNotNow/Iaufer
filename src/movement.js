@@ -5,6 +5,20 @@ import { handleObstacleCollision, handleTargetReached } from './crash-handler.js
 import { checkObstacleCollision } from './game-state.js';
 import { updateView } from './view-renderer.js';
 
+// Turn left (counterclockwise)
+export function left() {
+  const newDirection = (gameState.direction + 3) % 4; // +3 is same as -1 in mod 4
+  setDirection(newDirection);
+  updateView();
+}
+
+// Turn right (clockwise)
+export function right() {
+  const newDirection = (gameState.direction + 1) % 4;
+  setDirection(newDirection);
+  updateView();
+}
+
 // Check if the avatar can move forward without hitting an obstacle
 export function free() {
   const x = gameState.position.x;
