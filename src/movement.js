@@ -75,31 +75,22 @@ export function free() {
 
 export function go(input) {
   let steps = parseNumber(input);
-  
-  // Check how many free spaces are available
-  const freeSpaces = free();
-  
-  // Only move if we have enough free space, otherwise move to the limit
-  const actualSteps = Math.min(steps, freeSpaces);
-  
-  if (actualSteps > 0) {
-    switch (gameState.direction) {
-      case 0:
-        gameState.position.y -= actualSteps;
-        break;
-      case 1:
-        gameState.position.x += actualSteps;
-        break;
-      case 2:
-        gameState.position.y += actualSteps;
-        break;
-      case 3:
-        gameState.position.x -= actualSteps;
-        break;
-    }
+  switch (gameState.direction) {
+    case 0:
+      gameState.position.y -= steps;
+      break;
+    case 1:
+      gameState.position.x += steps;
+      break;
+    case 2:
+      gameState.position.y += steps;
+      break;
+    case 3:
+      gameState.position.x -= steps;
+      break;
   }
 
-  // Check for collisions after movement
+  if (!withinBounds()) handleWallCollision();
   if (checkObstacleCollision()) handleObstacleCollision();
   if (checkTargetReached()) handleTargetReached();
   updateView();
