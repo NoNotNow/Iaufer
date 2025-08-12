@@ -114,3 +114,4 @@ export function go(input) {
     handleTargetReached();
     return;
   }
+}
