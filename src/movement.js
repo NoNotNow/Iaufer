@@ -37,7 +37,7 @@ export function free() {
     }
     
     // Check bounds
-    if (nextX < 0 || nextX > gameState.stageSize.x || nextY < 0 || nextY > gameState.stageSize.y) {
+    if (nextX < 0 || nextX >= gameState.stageSize.x || nextY < 0 || nextY >= gameState.stageSize.y) {
       break;
     }
     
