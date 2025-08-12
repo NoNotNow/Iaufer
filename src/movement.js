@@ -75,33 +75,42 @@ export function free() {
 
 export function go(input) {
   let steps = parseNumber(input);
+  
+  // Use free() to determine how many steps we can actually take
+  const availableSteps = free();
+  const actualSteps = Math.min(steps, availableSteps);
+  
+  // Move the actual number of steps
   switch (gameState.direction) {
     case 0:
-      gameState.position.y -= steps;
+      gameState.position.y -= actualSteps;
       break;
     case 1:
-      gameState.position.x += steps;
+      gameState.position.x += actualSteps;
       break;
     case 2:
-      gameState.position.y += steps;
+      gameState.position.y += actualSteps;
       break;
     case 3:
-      gameState.position.x -= steps;
+      gameState.position.x -= actualSteps;
       break;
   }
-
-  if (!withinBounds()) handleWallCollision();
-  if (checkObstacleCollision()) handleObstacleCollision();
-  if (checkTargetReached()) handleTargetReached();
-  updateView();
-}
-
-export function right(input) {
-  setDirection(gameState.direction + parseNumber(input));
-  updateView();
-}
-
-export function left(input) {
-  setDirection(gameState.direction - parseNumber(input));
-  updateView();
-}
+  
+  // If we couldn't take all the requested steps, handle collision
+  if (actualSteps < steps) {
+    // Check what stopped us - bounds or obstacle
+    if (!withinBounds()) {
+      handleWallCollision();
+      return;
+    }
+    if (checkObstacleCollision()) {
+      handleObstacleCollision();
+      return;
+    }
+  }
+  
+  // Check if target is reached after movement
+  if (checkTargetReached()) {
+    handleTargetReached();
+    return;
+  }
